@@ -9,37 +9,24 @@ def image_to_base64(image_path):
 
 st.set_page_config(
     page_title="Major Vendor Order",
-    page_icon="📦",
+    page_icon="images/logo.png",
     layout="wide"
 )
 
 st.markdown("""
 <style>
-/* Hide Streamlit default UI */
-#MainMenu {
+#MainMenu, header, footer {
     visibility: hidden;
 }
 
-header {
-    visibility: hidden;
-}
-
-footer {
-    visibility: hidden;
-}
-
-[data-testid="stToolbar"] {
-    display: none;
-}
-
+[data-testid="stToolbar"],
 [data-testid="stDecoration"] {
     display: none;
 }
 
-/* App styling */
 .stApp {
-    background-color: #FEFAE0;
-    color: #283618;
+    background-color: #F6F1E5;
+    color: #2F372D;
 }
 
 .block-container {
@@ -48,132 +35,169 @@ footer {
     max-width: 1050px;
 }
 
-h1 {
+.hero {
+    background-color: #1D5A3E;
+    padding: 34px 28px;
+    border-radius: 26px;
+    margin-bottom: 28px;
+    box-shadow: 0px 8px 22px rgba(29, 90, 62, 0.18);
+}
+
+.hero h1 {
     text-align: center;
-    color: #283618;
+    color: #FFF9EF;
     font-size: 46px;
     font-weight: 800;
-    margin-bottom: 0.2rem;
+    margin: 0;
 }
 
-h2, h3 {
-    color: #283618;
-}
-
-.subtitle {
+.hero p {
     text-align: center;
-    color: rgba(40,54,24,0.75);
+    color: rgba(255,249,239,0.88);
     font-size: 18px;
-    margin-bottom: 2rem;
+    margin-top: 12px;
+    margin-bottom: 0;
 }
 
-.card {
-    background-color: #FFF7E3;
-    padding: 22px;
-    border-radius: 16px;
-    border: 1px solid #DDA15E;
-    box-shadow: 0px 4px 14px rgba(40,54,24,0.06);
+.section-card {
+    background-color: #FFF9EF;
+    padding: 28px;
+    border-radius: 24px;
+    border: 1px solid #D7C8A4;
+    box-shadow: 0px 5px 18px rgba(47,55,45,0.08);
     margin-bottom: 24px;
 }
 
-.step-card {
-    background-color: #FFFFFF;
-    padding: 16px;
-    border-radius: 14px;
-    border: 1px solid rgba(221,161,94,0.8);
+.section-card h2 {
     text-align: center;
-    min-height: 210px;
+    color: #1D5A3E;
+    margin-top: 0;
+    font-size: 32px;
+}
+
+.section-card p {
+    text-align: center;
+    color: #5C7A58;
+    font-size: 16px;
+}
+
+.step-card {
+    background-color: #FFF9EF;
+    padding: 18px;
+    border-radius: 22px;
+    border: 1px solid #D7C8A4;
+    text-align: center;
+    min-height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 0px 4px 14px rgba(47,55,45,0.07);
 }
 
 .step-number {
-    background-color: #BC6C25;
+    background-color: #C97822;
     color: white;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-weight: 800;
+    margin: 0 auto 12px auto;
 }
 
-.muted {
-    color: rgba(40,54,24,0.75);
+.step-card h4 {
+    color: #1D5A3E;
+    font-size: 21px;
+    margin: 8px 0;
+}
+
+.step-card p {
+    color: #5C7A58;
+    font-size: 14px;
+    margin-bottom: 0;
 }
 
 .stButton button {
-    background-color: #BC6C25;
+    background-color: #C97822;
     color: white;
-    border-radius: 10px;
-    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    padding: 0.55rem 1rem;
     border: none;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .stButton button:hover {
-    background-color: #A85F20;
+    background-color: #B4671C;
     color: white;
 }
 
 .stDownloadButton button {
-    background-color: #283618;
+    background-color: #1D5A3E;
     color: white;
-    border-radius: 10px;
+    border-radius: 12px;
     border: none;
-    font-weight: 600;
+    font-weight: 700;
+}
+
+.stDownloadButton button:hover {
+    background-color: #15442F;
+    color: white;
 }
 
 section[data-testid="stFileUploader"] {
-    background-color: #FFFFFF;
-    padding: 20px;
-    border-radius: 16px;
-    border: 1px solid #DDA15E;
+    background-color: #FFF9EF;
+    padding: 22px;
+    border-radius: 22px;
+    border: 1px solid #D7C8A4;
+    box-shadow: 0px 4px 14px rgba(47,55,45,0.07);
 }
 
 div[data-testid="stMetric"] {
-    background-color: #FFF7E3;
-    border: 1px solid #DDA15E;
-    padding: 16px;
-    border-radius: 14px;
+    background-color: #FFF9EF;
+    border: 1px solid #D7C8A4;
+    padding: 18px;
+    border-radius: 18px;
+    box-shadow: 0px 4px 14px rgba(47,55,45,0.06);
 }
 
 hr {
     border: none;
-    border-top: 1px solid #DDA15E;
+    border-top: 1px solid #D7C8A4;
     margin: 2rem 0;
+}
+
+h2, h3 {
+    color: #1D5A3E;
 }
 </style>
 """, unsafe_allow_html=True)
 
 
-st.markdown("<h1>Major Vendor Order Report</h1>", unsafe_allow_html=True)
-st.markdown(
-    "<div class='subtitle'>Upload a 4-week Lightspeed item report and generate a Major Vendor Order.</div>",
-    unsafe_allow_html=True
-)
-
 st.markdown("""
-<div class="card">
-    <h2 style="text-align:center; margin-top:0;">
-        First, Export Report from Lightspeed
-    </h2>
-    <p class="muted" style="text-align:center;">
-        Pull the 4-week report before uploading.
-    </p>
+<div class="hero">
+    <h1>📦 Major Vendor Order Report</h1>
+    <p>Generate a vendor order from a Lightspeed 4-week item sales report.</p>
 </div>
 """, unsafe_allow_html=True)
 
+
+st.markdown("""
+<div class="section-card">
+    <h2>First, Export Report from Lightspeed</h2>
+    <p>Pull the 4-week report before uploading your CSV.</p>
+</div>
+""", unsafe_allow_html=True)
+
+
 steps = [
-    ("images/reports.png", "Reports", "In Lightspeed, select Reports."),
-    ("images/grouped_sales.png", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
-    ("images/item_report.png", "Item Report", "Select Item as the report type."),
-    ("images/calendar.png", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
-    ("images/vendor.png", "Vendor Filter", "Change the vendor filter if needed."),
-    ("images/export.png", "Export CSV", "Press Export and save the CSV file.")
+    ("images/reports.png", "Reports", "In Lightspeed, select 'Reports' in the sidebar."),
+    ("images/grouped_sales.png", "Grouped Sales Totals", "Scroll DOWN to 'Grouped Sales Totals'."),
+    ("images/item_report.png", "Item Report", "Select 'Item' as the report type."),
+    ("images/calendar.png", "Date Filter", "Set the date range to the last 4 weeks for Major Vendors."),
+    ("images/vendor.png", "Vendor Filter", "Change the 'Vendor' to desired order."),
+    ("images/export.png", "Export CSV", "Press 'Export' and save the CSV file.")
 ]
 
 row1 = st.columns(3)
@@ -186,13 +210,13 @@ for i, step in enumerate(steps[:3]):
         st.markdown(f"""
         <div class="step-card">
             <div class="step-number">{i + 1}</div>
-            <img src="data:image/png;base64,{image_base64}" width="85" style="margin:0 auto 8px auto;">
-            <h4 style="margin:6px 0;">{title}</h4>
-            <p class="muted" style="font-size:14px;">{desc}</p>
+            <img src="data:image/png;base64,{image_base64}" width="85" style="margin:0 auto 10px auto;">
+            <h4>{title}</h4>
+            <p>{desc}</p>
         </div>
         """, unsafe_allow_html=True)
 
-st.markdown("<div style='height:12px;'></div>", unsafe_allow_html=True)
+st.markdown("<div style='height:14px;'></div>", unsafe_allow_html=True)
 
 row2 = st.columns(3)
 
@@ -204,11 +228,12 @@ for i, step in enumerate(steps[3:]):
         st.markdown(f"""
         <div class="step-card">
             <div class="step-number">{i + 4}</div>
-            <img src="data:image/png;base64,{image_base64}" width="85" style="margin:0 auto 8px auto;">
-            <h4 style="margin:6px 0;">{title}</h4>
-            <p class="muted" style="font-size:14px;">{desc}</p>
+            <img src="data:image/png;base64,{image_base64}" width="85" style="margin:0 auto 10px auto;">
+            <h4>{title}</h4>
+            <p>{desc}</p>
         </div>
         """, unsafe_allow_html=True)
+
 
 st.divider()
 
@@ -226,7 +251,6 @@ if uploaded_file:
     df = pd.read_csv(uploaded_file)
 
     required_columns = ["Stock", "Sold"]
-
     missing_columns = [col for col in required_columns if col not in df.columns]
 
     if missing_columns:
@@ -271,7 +295,10 @@ if uploaded_file:
             st.metric("Total Units", int(output_df["Order Qty"].sum()))
 
         with col3:
-            st.metric("Top Order Qty", int(output_df["Order Qty"].max()) if len(output_df) > 0 else 0)
+            st.metric(
+                "Top Order Qty",
+                int(output_df["Order Qty"].max()) if len(output_df) > 0 else 0
+            )
 
         st.markdown("### Recommended Order Preview")
         st.dataframe(output_df.head(50), use_container_width=True)
