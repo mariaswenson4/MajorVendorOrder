@@ -122,14 +122,14 @@ hr {
 
 st.markdown("<h1>Major Vendor Order Report</h1>", unsafe_allow_html=True)
 st.markdown(
-    "<div class='subtitle'>Upload a 4-week Lightspeed item report and generate a recommended vendor order.</div>",
+    "<div class='subtitle'>Upload a 4-week Lightspeed item report and generate a Major Vendor Order.</div>",
     unsafe_allow_html=True
 )
 
 
 st.markdown("""
 <div class="card">
-    <h2 style="text-align:center; margin-top:0;">1. Export Report from Lightspeed</h2>
+    <h2 style="text-align:center; margin-top:0;">First, Export Report from Lightspeed</h2>
     <p class="muted" style="text-align:center;">
         Pull the 4-week item sales report before uploading your CSV.
     </p>
@@ -176,7 +176,7 @@ with st.expander("📊 Show Lightspeed Export Steps", expanded=True):
 
 st.divider()
 
-st.markdown("## 2. Upload Report")
+st.markdown("## Upload Item Sale Report Here:")
 
 uploaded_file = st.file_uploader(
     "Drop your 4-week CSV report here",
