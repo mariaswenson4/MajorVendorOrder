@@ -9,7 +9,7 @@ def image_to_base64(image_path):
 
 st.set_page_config(
     page_title="Major Vendor Order",
-    page_icon="📦",
+    page_icon="images/logo.png",
     layout="wide"
 )
 
@@ -37,10 +37,10 @@ st.markdown("""
 
 .hero {
     background-color: #1D5A3E;
-    padding: 34px 28px;
+    padding: 40px 30px;
     border-radius: 26px;
     margin-bottom: 34px;
-    box-shadow: 0px 8px 22px rgba(29, 90, 62, 0.18);
+    box-shadow: 0px 8px 22px rgba(29,90,62,.18);
 }
 
 .hero h1 {
@@ -174,10 +174,11 @@ h2, h3 {
 </style>
 """, unsafe_allow_html=True)
 
+logo_base64 = image_to_base64("images/logo.png")
 
 st.markdown("""
 <div class="hero">
-    <h1>📦 Major Vendor Order Report</h1>
+    <h1> Major Vendor Order Report</h1>
     <p>Generate a vendor order from a Lightspeed 4-week item sales report.</p>
 </div>
 """, unsafe_allow_html=True)
