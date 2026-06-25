@@ -81,13 +81,6 @@ st.markdown("""
     margin-bottom: 20px;
 }
 
-.step-strip {
-    background-color: #FFF9EF;
-    border: 1px solid #D7C8A4;
-    border-radius: 24px;
-    padding: 22px;
-    box-shadow: 0px 5px 16px rgba(47,55,45,0.07);
-}
 
 .mini-step {
     background-color: #FDF7EA;
@@ -220,8 +213,6 @@ def render_mini_step(number, image_path, title, desc):
     """, unsafe_allow_html=True)
 
 
-st.markdown('<div class="step-strip">', unsafe_allow_html=True)
-
 row1 = st.columns(3)
 for i, step in enumerate(steps[:3]):
     with row1[i]:
@@ -234,7 +225,6 @@ for i, step in enumerate(steps[3:]):
     with row2[i]:
         render_mini_step(i + 4, *step)
 
-st.markdown("</div>", unsafe_allow_html=True)
 
 
 st.divider()
@@ -246,7 +236,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader(
-    "Drop your 4-week CSV report here",
     type=["csv"]
 )
 
