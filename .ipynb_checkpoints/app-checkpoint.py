@@ -8,15 +8,15 @@ home = st.Page(
 )
 
 mvo = st.Page(
-    "pages/mvo.py",
+    "pages/MVO.py",
     title="Major Vendor Order",
     icon="📦"
 )
 
 map_page = st.Page(
-    "pages/map.py",
-    title="MAP Price Update",
-    icon="🏷️"
+    "pages/SVO.py",
+    title="Small Vendor Order",
+    icon="📦"
 )
 
 pg = st.navigation([home, mvo, map_page])
