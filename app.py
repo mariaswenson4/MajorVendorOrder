@@ -81,7 +81,7 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.page_link(
-    page = "pages/MVO.py"
+    page = "pages/MVO.py",
     label="📦 Major Vendor Order",
     icon="📦"
 )
