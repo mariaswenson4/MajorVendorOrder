@@ -6,6 +6,7 @@ def image_to_base64(image_path):
         return base64.b64encode(image_file.read()).decode()
 
 logo = image_to_base64("images/logo.png")
+ordering = image_to_base64("images/ordering.png")
 
 st.markdown("""
 <style>
@@ -218,7 +219,7 @@ st.markdown(f"""
 </div>
 <div class="banner-title">
 <h1>Tabby & Jack's Analytics</h1>
-<p>Internal reporting and automation tools</p>
+<p>Frequently used reporting tools for Tabby & Jack's</p>
 </div>
 </div>
 """, unsafe_allow_html=True)
@@ -232,25 +233,26 @@ st.markdown("""
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
-    st.markdown("""
+    st.markdown(f"""
 <div class="app-card">
 <div class="app-card-body">
+
 <div class="app-card-top">
 <div class="app-icon-wrap">
-<div style="font-size:42px;">📦</div>
+    <img src="data:image/png;base64,{ordering}" width="55">
 </div>
+
 <div>
 <h3>Major Vendor Order</h3>
 <div class="status-pill">Available</div>
 </div>
 </div>
-<p>Upload a 4-week Lightspeed report and generate vendor ordering quantities.</p>
+
+<p>Upload a 4-week Lightspeed report and generate a major vendor report.</p>
+
 </div>
 </div>
 """, unsafe_allow_html=True)
-
-    if st.button("Open Major Vendor Order  →", use_container_width=True, key="open_mvo"):
-        st.switch_page("pages/MVO.py")
 
 with col2:
     st.markdown("""
@@ -258,14 +260,14 @@ with col2:
 <div class="app-card-body">
 <div class="app-card-top">
 <div class="app-icon-wrap">
-<div style="font-size:42px;">📦</div>
+    <img src="data:image/png;base64,{ordering}" width="55">
 </div>
 <div>
 <h3>Small Vendor Order</h3>
 <div class="status-pill status-pill-muted">Coming Soon</div>
 </div>
 </div>
-<p>Upload sales data and generate smaller vendor ordering quantities.</p>
+<p>Upload a 90-day Lightspeed report and generate a small vendor report.</p>
 </div>
 </div>
 <div class="disabled-footer">Coming Soon  →</div>
