@@ -130,56 +130,51 @@ st.markdown(
 )
 
 st.markdown("""
-    <div class="card">
-        <h2 style="text-align:center; margin-top:0;">
-            First, Export Report from Lightspeed
-        </h2>
-        <p class="muted" style="text-align:center;">
-            Pull the 4-week report before uploading.
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+<div class="card">
+    <h2 style="text-align:center; margin-top:0;">
+        First, Export Report from Lightspeed
+    </h2>
+    <p class="muted" style="text-align:center;">
+        Pull the 4-week report before uploading.
+    </p>
+</div>
+""", unsafe_allow_html=True)
 
-    steps = [
-        ("📁", "Reports", "In Lightspeed, select Reports."),
-        ("📊", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
-        ("📦", "Item Report", "Select Item as the report type."),
-        ("📅", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
-        ("🏷️", "Vendor Filter", "Change the vendor filter if needed."),
-        ("⬇️", "Export CSV", "Press Export and save the CSV file.")
-    ]
+steps = [
+    ("📁", "Reports", "In Lightspeed, select Reports."),
+    ("📊", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
+    ("📦", "Item Report", "Select Item as the report type."),
+    ("📅", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
+    ("🏷️", "Vendor Filter", "Change the vendor filter if needed."),
+    ("⬇️", "Export CSV", "Press Export and save the CSV file.")
+]
 
+row1 = st.columns(3)
+row2 = st.columns(3)
 
+for i, step in enumerate(steps[:3]):
+    icon, title, desc = step
+    with row1[i]:
+        st.markdown(f"""
+        <div class="step-card">
+            <div class="step-number">{i + 1}</div>
+            <div style="font-size:26px;">{icon}</div>
+            <h4 style="margin:6px 0;">{title}</h4>
+            <p class="muted" style="font-size:14px;">{desc}</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-
-    
-    row1 = st.columns(3)
-    row2 = st.columns(3)
-
-    for i, step in enumerate(steps[:3]):
-        icon, title, desc = step
-        with row1[i]:
-            st.markdown(f"""
-            <div class="step-card">
-                <div class="step-number">{i + 1}</div>
-                <div style="font-size:26px;">{icon}</div>
-                <h4 style="margin:6px 0;">{title}</h4>
-                <p class="muted" style="font-size:14px;">{desc}</p>
-            </div>
-            """, unsafe_allow_html=True)
-
-    for i, step in enumerate(steps[3:]):
-        icon, title, desc = step
-        with row2[i]:
-            st.markdown(f"""
-            <div class="step-card">
-                <div class="step-number">{i + 4}</div>
-                <div style="font-size:26px;">{icon}</div>
-                <h4 style="margin:6px 0;">{title}</h4>
-                <p class="muted" style="font-size:14px;">{desc}</p>
-            </div>
-            """, unsafe_allow_html=True)
-
+for i, step in enumerate(steps[3:]):
+    icon, title, desc = step
+    with row2[i]:
+        st.markdown(f"""
+        <div class="step-card">
+            <div class="step-number">{i + 4}</div>
+            <div style="font-size:26px;">{icon}</div>
+            <h4 style="margin:6px 0;">{title}</h4>
+            <p class="muted" style="font-size:14px;">{desc}</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 st.divider()
 
