@@ -6,7 +6,7 @@ def image_to_base64(image_path):
         return base64.b64encode(image_file.read()).decode()
 
 st.set_page_config(
-    page_title="Tabby & Jack's Reports",
+    page_title="Tabby & Jack's Analytics",
     page_icon="images/logo.png",
     layout="wide"
 )
@@ -81,7 +81,7 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.page_link(
-    "pages/MVO.py",
+    page = "pages/MVO.py"
     label="📦 Major Vendor Order",
     icon="📦"
 )
