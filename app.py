@@ -2,19 +2,85 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title("Major Vendor Order Report") # Sets the title for the page
-# st.info("""
-#         HOW TO USE:
-#             1. In LightSpeed, click on "Reports" in the sidebar
-#             2. Scroll down to "Grouped Sales Totals"
-#             3. Select "Item"
-#             4. For Major Vendor Orders, change the date to account for the last four weeks 
-#             5. Select the Vendor you choose to order from under "Default Vendor"
-#             6. Press "Export"
-#         """)
+
+st.set_page_config(
+    page_title="Major Vendor Order",
+    page_icon="📦",
+    layout="wide"
+)
+#####
+
 
 st.markdown("""
-# Please drag and drop your CSV file below
+<style>
+
+/* Background */
+.stApp {
+    background-color: #FEFAE0;
+}
+
+/* Main header */
+h1 {
+    text-align: center;
+    color: #283618;
+    font-size: 42px;
+    margin-bottom: 0px;
+}
+
+/* Subheaders */
+h2, h3 {
+    text-align: center;
+    color: #283618;
+}
+
+/* Card style */
+div[data-testid="stMarkdownContainer"] {
+    font-size: 16px;
+}
+
+/* File uploader box */
+section[data-testid="stFileUploader"] {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #DDA15E;
+}
+
+/* Divider spacing */
+hr {
+    border-color: #DDA15E;
+}
+
+/* Buttons */
+.stDownloadButton button {
+    background-color: #BC6C25;
+    color: white;
+    border-radius: 8px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
+####
+
+st.markdown("<h1>Major Vendor Order Report</h1>", unsafe_allow_html=True)
+
+with st.container()
+    st.markdown("## How to Pull Report from Lightspeed?"):
+    st.info("""
+            Go to: 
+            ** Reports → Grouped Sales Totals →  Item ** 
+
+            Then: 
+                1. Set the date range to the last FOUR weeks
+                2. Select Major Vendor under "Default Vendor"
+                3. Select **EXPORT** 🗎
+            """)
+st.divider()
+
+st.markdown("""
+### Please drag and drop your CSV file below
 """)
 
 uploaded_file = st.file_uploader(
@@ -23,16 +89,9 @@ uploaded_file = st.file_uploader(
 )
 
 st.divider()
-with st.expander("Where do I find this report?"):
-    st.write("""
-            1. In LightSpeed, click on "Reports" in the sidebar
-            2. Scroll down to "Grouped Sales Totals"
-            3. Select "Item"
-            4. For Major Vendor Orders, change the date to account for the last four weeks 
-            5. Select the Vendor you choose to order from under "Default Vendor"
-            6. Press "Export"
-            """)
-st.divider()
+
+
+
 
 
 if uploaded_file:
