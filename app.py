@@ -42,7 +42,7 @@ h2, h3 {
 
 .card {
     background-color: #FFF7E3;
-    padding: 24px;
+    padding: 18px 28px;
     border-radius: 18px;
     border: 1px solid #DDA15E;
     box-shadow: 0px 4px 14px rgba(40,54,24,0.08);
@@ -127,24 +127,27 @@ st.markdown(
 )
 
 
-st.markdown("""
-<div class="card">
-    <h2 style="text-align:center; margin-top:0;">First, Export Report from Lightspeed</h2>
-    <p class="muted" style="text-align:center;">
-        Pull the 4-week item sales report before uploading your CSV.
-    </p>
-</div>
-""", unsafe_allow_html=True)
+with st.container(border=True):
 
-with st.expander("📊 Show Lightspeed Export Steps", expanded=True):
-    steps = [
-        ("📁", "Reports", "In Lightspeed, select Reports."),
-        ("📊", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
-        ("📦", "Item Report", "Select Item as the report type."),
-        ("📅", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
-        ("🏷️", "Vendor Filter", "Change the vendor filter if needed."),
-        ("⬇️", "Export CSV", "Press Export and save the CSV file.")
-    ]
+    st.markdown("""
+    <h2 style='text-align:center'>
+    First, Export Report from Lightspeed
+    </h2>
+
+    <p style='text-align:center'>
+    Pull the 4-week report before uploading.
+    </p>
+    """, unsafe_allow_html=True)
+
+    with st.expander("📊 Show Export Steps", expanded =True):
+        steps = [
+            ("📁", "Reports", "In Lightspeed, select Reports."),
+            ("📊", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
+            ("📦", "Item Report", "Select Item as the report type."),
+            ("📅", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
+            ("🏷️", "Vendor Filter", "Change the vendor filter if needed."),
+            ("⬇️", "Export CSV", "Press Export and save the CSV file.")
+        ]
 
     row1 = st.columns(3)
     row2 = st.columns(3)
