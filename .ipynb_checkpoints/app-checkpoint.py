@@ -80,11 +80,15 @@ st.markdown(f"""
 col1, col2 = st.columns(2)
 
 with col1:
-    st.page_link(
-    page = "pages/MVO.py",
-    label="📦 Major Vendor Order",
-    icon="📦"
-)
+    st.markdown("""
+    <div class="report-card">
+        <h3>📦 Major Vendor Order</h3>
+        <p>Generate recommended purchase quantities from a 4-week Lightspeed sales report.</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    if st.button("Open Major Vendor Order"):
+        st.switch_page("pages/MVO.py")
 
 with col2:
     st.markdown("""
