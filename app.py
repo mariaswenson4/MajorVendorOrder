@@ -16,13 +16,13 @@ home = st.Page(
 mvo = st.Page(
     "pages/MVO.py",
     title="Major Vendor Order",
-    icon="images/ordering.png"
+    icon="📦"
 )
 
 svo = st.Page(
     "pages/SVO.py",
     title="Small Vendor Order",
-    icon="images/ordering.png"
+    icon="📦"
 )
 
 pg = st.navigation(

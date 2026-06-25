@@ -236,31 +236,30 @@ with col1:
     st.markdown(f"""
 <div class="app-card">
 <div class="app-card-body">
-
 <div class="app-card-top">
 <div class="app-icon-wrap">
-    <img src="data:image/png;base64,{ordering}" width="55">
+<img src="data:image/png;base64,{ordering}" width="55">
 </div>
-
 <div>
 <h3>Major Vendor Order</h3>
 <div class="status-pill">Available</div>
 </div>
 </div>
-
 <p>Upload a 4-week Lightspeed report and generate a major vendor report.</p>
-
 </div>
 </div>
 """, unsafe_allow_html=True)
 
+    if st.button("Open Major Vendor Order  →", use_container_width=True, key="open_mvo"):
+        st.switch_page("pages/MVO.py")
+
 with col2:
-    st.markdown("""
+    st.markdown(f"""
 <div class="app-card">
 <div class="app-card-body">
 <div class="app-card-top">
 <div class="app-icon-wrap">
-    <img src="data:image/png;base64,{ordering}" width="55">
+<img src="data:image/png;base64,{ordering}" width="55">
 </div>
 <div>
 <h3>Small Vendor Order</h3>
