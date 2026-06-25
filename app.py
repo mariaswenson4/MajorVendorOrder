@@ -139,7 +139,7 @@ with st.container(border=True):
     </p>
     """, unsafe_allow_html=True)
 
-    with st.expander("📊 Show Export Steps", expanded =True):
+    with st.expander("📊 Show Export Steps"):
         steps = [
             ("📁", "Reports", "In Lightspeed, select Reports."),
             ("📊", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
