@@ -10,52 +10,80 @@ st.set_page_config(
 )
 #####
 
-
 st.markdown("""
 <style>
 
-/* Background */
+/* PAGE BACKGROUND */
 .stApp {
     background-color: #FEFAE0;
 }
 
-/* Main header */
+/* MAIN CONTAINER SPACING */
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    max-width: 1100px;
+}
+
+/* HERO TITLE */
 h1 {
     text-align: center;
     color: #283618;
-    font-size: 42px;
-    margin-bottom: 0px;
+    font-size: 44px;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.5px;
 }
 
-/* Subheaders */
-h2, h3 {
+/* SUBHEADINGS */
+h2 {
     text-align: center;
     color: #283618;
+    font-weight: 600;
 }
 
-/* Card style */
+/* REMOVE markdown noise spacing */
 div[data-testid="stMarkdownContainer"] {
     font-size: 16px;
+    line-height: 1.6;
 }
 
-/* File uploader box */
-section[data-testid="stFileUploader"] {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
+/* CARD STYLE (this is the key upgrade) */
+div.stAlert {
+    border-radius: 16px;
     border: 1px solid #DDA15E;
+    background-color: #FFF7E3;
 }
 
-/* Divider spacing */
-hr {
-    border-color: #DDA15E;
+/* FILE UPLOADER "CARD" */
+section[data-testid="stFileUploader"] {
+    background-color: #FFFFFF;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid #DDA15E;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.05);
 }
 
-/* Buttons */
-.stDownloadButton button {
+/* BUTTONS */
+.stButton button {
     background-color: #BC6C25;
     color: white;
-    border-radius: 8px;
+    border-radius: 10px;
+    padding: 0.45rem 1rem;
+    border: none;
+}
+
+/* DOWNLOAD BUTTON */
+.stDownloadButton button {
+    background-color: #283618;
+    color: white;
+    border-radius: 10px;
+}
+
+/* DIVIDERS */
+hr {
+    border: none;
+    border-top: 1px solid #DDA15E;
+    margin: 2rem 0;
 }
 
 </style>
@@ -66,27 +94,75 @@ hr {
 
 st.markdown("<h1>Major Vendor Order Report</h1>", unsafe_allow_html=True)
 
-with st.container():
-    st.markdown("## How to Pull Report from Lightspeed?")
-    st.info("""
-            Go to: 
-            ** Reports → Grouped Sales Totals →  Item ** 
-
-            Then: 
-                1. Set the date range to the last FOUR weeks
-                2. Select Major Vendor under "Default Vendor"
-                3. Select **EXPORT** 🗎
-            """)
-st.divider()
+st.markdown("## How to Pull Report from Lightspeed")
 
 st.markdown("""
-### Please drag and drop your CSV file below
-""")
+<div style="
+    background-color:#FFF7E3;
+    padding:20px;
+    border-radius:16px;
+    border:1px solid #DDA15E;
+">
+""", unsafe_allow_html=True)
+
+col1, col2 = st.columns([4, 1])
+
+with col1:
+    st.markdown("""
+### 📊 Export 4-Week Item Report
+
+Follow these steps in Lightspeed:
+    """)
+
+with col2:
+    show_steps = st.button("Show Steps")
+
+st.markdown("</div>", unsafe_allow_html=True)
+
+if show_steps:
+    cols = st.columns(6)
+
+    steps = [
+        "In Lightspeed, Select Reports",
+        "Scroll to Grouped Sales Totals",
+        "Select Item",
+        "Choose date to be last 4 Weeks",
+        "Change Vendor",
+        "Press Export"
+    ]
+
+    icons = ["📁", "📊", "📦", "📅", "🏷️", "⬇️"]
+
+    for i in range(6):
+        with cols[i]:
+            st.markdown(f"""
+            <div style='text-align:center'>
+                <div style='font-size:24px'>{icons[i]}</div>
+                <div style='font-weight:600'>{steps[i]}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+
+
+
+
+st.markdown("## Upload Report")
+
+st.markdown("""
+<div style="
+    background-color:#FFFFFF;
+    padding:16px;
+    border-radius:14px;
+    border:1px solid #DDA15E;
+">
+""", unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader(
-    "↓ Upload 4 Week Item Report Here ↓",
+    "Drop your 4-week CSV report here",
     type=["csv"]
 )
+
+st.markdown("</div>", unsafe_allow_html=True)
 
 st.divider()
 
