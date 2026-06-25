@@ -6,7 +6,7 @@ import base64
 def image_to_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()
-        
+
 st.set_page_config(
     page_title="Major Vendor Order",
     page_icon="📦",
@@ -15,6 +15,28 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+/* Hide Streamlit default UI */
+#MainMenu {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+[data-testid="stToolbar"] {
+    display: none;
+}
+
+[data-testid="stDecoration"] {
+    display: none;
+}
+
+/* App styling */
 .stApp {
     background-color: #FEFAE0;
     color: #283618;
@@ -47,7 +69,7 @@ h2, h3 {
 
 .card {
     background-color: #FFF7E3;
-    padding: 26px 22px;
+    padding: 22px;
     border-radius: 16px;
     border: 1px solid #DDA15E;
     box-shadow: 0px 4px 14px rgba(40,54,24,0.06);
@@ -60,7 +82,7 @@ h2, h3 {
     border-radius: 14px;
     border: 1px solid rgba(221,161,94,0.8);
     text-align: center;
-    min-height: 170px;
+    min-height: 210px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -155,7 +177,6 @@ steps = [
 ]
 
 row1 = st.columns(3)
-row2 = st.columns(3)
 
 for i, step in enumerate(steps[:3]):
     image_path, title, desc = step
@@ -165,12 +186,15 @@ for i, step in enumerate(steps[:3]):
         st.markdown(f"""
         <div class="step-card">
             <div class="step-number">{i + 1}</div>
-            <img src="data:image/png;base64,{image_base64}" width="65" style="margin:0 auto 8px auto;">
+            <img src="data:image/png;base64,{image_base64}" width="85" style="margin:0 auto 8px auto;">
             <h4 style="margin:6px 0;">{title}</h4>
             <p class="muted" style="font-size:14px;">{desc}</p>
         </div>
         """, unsafe_allow_html=True)
 
+st.markdown("<div style='height:12px;'></div>", unsafe_allow_html=True)
+
+row2 = st.columns(3)
 
 for i, step in enumerate(steps[3:]):
     image_path, title, desc = step
@@ -180,7 +204,7 @@ for i, step in enumerate(steps[3:]):
         st.markdown(f"""
         <div class="step-card">
             <div class="step-number">{i + 4}</div>
-            <img src="data:image/png;base64,{image_base64}" width="65" style="margin:0 auto 8px auto;">
+            <img src="data:image/png;base64,{image_base64}" width="85" style="margin:0 auto 8px auto;">
             <h4 style="margin:6px 0;">{title}</h4>
             <p class="muted" style="font-size:14px;">{desc}</p>
         </div>
@@ -188,7 +212,7 @@ for i, step in enumerate(steps[3:]):
 
 st.divider()
 
-st.markdown("## Upload Item Sale Report Here:")
+st.markdown("## Second, Upload Item Sale Report")
 
 uploaded_file = st.file_uploader(
     "Drop your 4-week CSV report here",
@@ -236,7 +260,7 @@ if uploaded_file:
         output_df = df[df["Order Qty"] > 0].copy()
         output_df = output_df.sort_values("Order Qty", ascending=False)
 
-        st.markdown("## 3. Order Results")
+        st.markdown("## Third, Order Results")
 
         col1, col2, col3 = st.columns(3)
 
