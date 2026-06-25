@@ -67,7 +67,7 @@ hr {
 st.markdown("<h1>Major Vendor Order Report</h1>", unsafe_allow_html=True)
 
 with st.container():
-    st.markdown("## How to Pull Report from Lightspeed?"):
+    st.markdown("## How to Pull Report from Lightspeed?")
     st.info("""
             Go to: 
             ** Reports → Grouped Sales Totals →  Item ** 
