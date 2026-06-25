@@ -1,9 +1,11 @@
 import streamlit as st
 import base64
 
+
 def image_to_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()
+
 
 st.markdown("""
 <style>
@@ -24,12 +26,11 @@ section[data-testid="stSidebar"] {
 }
 
 .hero {
-    background: linear-gradient(rgba(29,90,62,.94), rgba(21,68,47,.98));
-    border-radius: 26px;
-    padding: 48px 32px;
+    background: linear-gradient(rgba(29,90,62,.95), rgba(21,68,47,.98));
+    border-radius: 28px;
+    padding: 48px 36px;
     margin-bottom: 34px;
     box-shadow: 0px 10px 28px rgba(29,90,62,.22);
-    border: 1px solid rgba(255,249,239,.18);
 }
 
 .hero-logo {
@@ -49,7 +50,7 @@ section[data-testid="stSidebar"] {
     color: rgba(255,249,239,.88);
     text-align: center;
     font-size: 20px;
-    margin: 14px 0 0 0;
+    margin-top: 14px;
 }
 
 .section-kicker {
@@ -78,11 +79,10 @@ section[data-testid="stSidebar"] {
     background-color: #FFFDF8;
     border: 1px solid #D7C8A4;
     border-radius: 24px;
-    min-height: 340px;
+    min-height: 300px;
     overflow: hidden;
     box-shadow: 0px 7px 22px rgba(47,55,45,.08);
     transition: all .18s ease;
-    margin-bottom: 12px;
 }
 
 .app-card:hover {
@@ -94,7 +94,7 @@ section[data-testid="stSidebar"] {
 .app-card-body {
     padding: 36px 34px 28px 34px;
     text-align: center;
-    min-height: 235px;
+    min-height: 220px;
 }
 
 .app-icon-wrap {
@@ -122,40 +122,38 @@ section[data-testid="stSidebar"] {
     margin: 0;
 }
 
-.app-card-footer {
-    border-top: 1px solid #E6D9BC;
-    background-color: #FFF7EA;
-    padding: 20px 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+button[kind="primary"] {
+    background-color: #FFF7EA !important;
+    color: #C97822 !important;
+    border: 1px solid #D7C8A4 !important;
+    border-radius: 0 0 24px 24px !important;
+    height: 64px !important;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    box-shadow: none !important;
 }
 
-.footer-text {
-    color: #C97822;
-    font-size: 17px;
-    font-weight: 700;
+button[kind="primary"]:hover {
+    background-color: #C97822 !important;
+    color: white !important;
+    border-color: #C97822 !important;
 }
 
-.arrow-circle {
-    background-color: #E97800;
-    color: white;
-    width: 52px;
-    height: 52px;
-    border-radius: 999px;
+div[data-testid="stButton"] {
+    margin-top: -1px;
+}
+
+.disabled-footer {
+    background-color: #F4EFE3;
+    border: 1px solid #D7C8A4;
+    border-top: none;
+    border-radius: 0 0 24px 24px;
+    height: 64px;
+    color: #7B776E;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-}
-
-.arrow-circle-disabled {
-    background-color: #DDD6C8;
-    color: #6F6A5F;
-}
-
-.click-card {
-    text-decoration: none;
+    font-weight: 800;
 }
 
 .info-banner {
@@ -163,7 +161,7 @@ section[data-testid="stSidebar"] {
     border: 1px solid #D7C8A4;
     border-radius: 18px;
     padding: 22px 26px;
-    margin-top: 26px;
+    margin-top: 30px;
     display: flex;
     align-items: center;
     gap: 18px;
@@ -173,7 +171,7 @@ section[data-testid="stSidebar"] {
 .info-icon {
     background-color: #1D5A3E;
     color: white;
-    width: 42px;
+    min-width: 42px;
     height: 42px;
     border-radius: 999px;
     display: flex;
@@ -195,6 +193,7 @@ section[data-testid="stSidebar"] {
 </style>
 """, unsafe_allow_html=True)
 
+
 logo = image_to_base64("images/logo.png")
 
 st.markdown(f"""
@@ -205,32 +204,32 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+
 st.markdown("""
 <div class="section-kicker">Reports</div>
 <div class="section-title">Reports</div>
-<div class="section-subtitle">Select a tool below to get started.</div>
+<div class="section-subtitle">Select an application below to get started.</div>
 """, unsafe_allow_html=True)
+
 
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
     st.markdown("""
-    <a class="click-card" href="/MVO" target="_self">
-        <div class="app-card">
-            <div class="app-card-body">
-                <div class="app-icon-wrap">
-                    <div style="font-size:58px;">📦</div>
-                </div>
-                <h3>Major Vendor Order</h3>
-                <p>Upload a 4-week Lightspeed report and generate vendor ordering quantities.</p>
+    <div class="app-card">
+        <div class="app-card-body">
+            <div class="app-icon-wrap">
+                <div style="font-size:58px;">📦</div>
             </div>
-            <div class="app-card-footer">
-                <div class="footer-text">Open Application</div>
-                <div class="arrow-circle">→</div>
-            </div>
+            <h3>Major Vendor Order</h3>
+            <p>Upload a 4-week Lightspeed report and generate vendor ordering quantities.</p>
         </div>
-    </a>
+    </div>
     """, unsafe_allow_html=True)
+
+    if st.button("Open Application  →", type="primary", use_container_width=True, key="open_mvo"):
+        st.switch_page("pages/MVO.py")
+
 
 with col2:
     st.markdown("""
@@ -242,12 +241,10 @@ with col2:
             <h3>Small Vendor Order</h3>
             <p>Upload sales data and generate smaller vendor ordering quantities.</p>
         </div>
-        <div class="app-card-footer">
-            <div class="footer-text" style="color:#7B776E;">Coming Soon</div>
-            <div class="arrow-circle arrow-circle-disabled">→</div>
-        </div>
     </div>
+    <div class="disabled-footer">Coming Soon  →</div>
     """, unsafe_allow_html=True)
+
 
 st.markdown("""
 <div class="info-banner">
