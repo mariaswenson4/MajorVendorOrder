@@ -18,19 +18,13 @@ st.markdown("""
     padding-bottom: 3rem;
 }
 
-/* Sidebar styling */
 section[data-testid="stSidebar"] {
     background-color: #FFF9EF;
     border-right: 1px solid #D7C8A4;
 }
 
-section[data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] {
-    color: #1D5A3E;
-}
-
 .hero {
-    background:
-        linear-gradient(rgba(29,90,62,.94), rgba(21,68,47,.98));
+    background: linear-gradient(rgba(29,90,62,.94), rgba(21,68,47,.98));
     border-radius: 26px;
     padding: 48px 32px;
     margin-bottom: 34px;
@@ -49,7 +43,6 @@ section[data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] {
     font-size: 52px;
     font-weight: 850;
     margin: 0;
-    letter-spacing: -.5px;
 }
 
 .hero p {
@@ -57,30 +50,6 @@ section[data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] {
     text-align: center;
     font-size: 20px;
     margin: 14px 0 0 0;
-}
-
-.hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 46px;
-    margin-top: 34px;
-}
-
-.hero-stat {
-    text-align: center;
-    color: #FFF9EF;
-    min-width: 120px;
-}
-
-.hero-stat-number {
-    font-size: 34px;
-    font-weight: 800;
-}
-
-.hero-stat-label {
-    font-size: 14px;
-    opacity: .85;
-    margin-top: 2px;
 }
 
 .section-kicker {
@@ -227,28 +196,12 @@ section[data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] {
 """, unsafe_allow_html=True)
 
 logo = image_to_base64("images/logo.png")
-box_icon = image_to_base64("images/logo.png")
 
 st.markdown(f"""
 <div class="hero">
     <img class="hero-logo" src="data:image/png;base64,{logo}" width="150">
     <h1>Tabby & Jack's Analytics</h1>
     <p>Internal reporting and automation tools</p>
-
-    <div class="hero-stats">
-        <div class="hero-stat">
-            <div class="hero-stat-number">2</div>
-            <div class="hero-stat-label">Report Tools</div>
-        </div>
-        <div class="hero-stat">
-            <div class="hero-stat-number">1</div>
-            <div class="hero-stat-label">Automation</div>
-        </div>
-        <div class="hero-stat">
-            <div class="hero-stat-number">1</div>
-            <div class="hero-stat-label">Utility</div>
-        </div>
-    </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -284,7 +237,7 @@ with col2:
     <div class="app-card">
         <div class="app-card-body">
             <div class="app-icon-wrap">
-                <div style="font-size:58px;">🏷️</div>
+                <div style="font-size:58px;">📦</div>
             </div>
             <h3>Small Vendor Order</h3>
             <p>Upload sales data and generate smaller vendor ordering quantities.</p>
