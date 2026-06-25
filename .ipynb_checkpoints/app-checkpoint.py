@@ -37,9 +37,9 @@ st.markdown("""
 
 .hero {
     background-color: #1D5A3E;
-    padding: 40px 30px;
+    padding: 28px 28px;
     border-radius: 26px;
-    margin-bottom: 34px;
+    margin-bottom: 28px;
     box-shadow: 0px 8px 22px rgba(29,90,62,.18);
 }
 
@@ -87,7 +87,7 @@ st.markdown("""
     border: 1px solid #D7C8A4;
     border-radius: 18px;
     padding: 14px 10px;
-    min-height: 125px;
+    min-height: 115px;
     text-align: center;
     box-shadow: 0px 3px 10px rgba(47,55,45,0.04);
 }
@@ -192,12 +192,12 @@ st.markdown("""
 
 
 steps = [
-    ("images/reports.png", "Reports", "Open Reports from the sidebar."),
-    ("images/grouped_sales.png", "Grouped Sales", "Scroll to Grouped Sales Totals."),
-    ("images/item_report.png", "Item Report", "Select Item as the report type."),
-    ("images/calendar.png", "Date Filter", "Set date range to last 4 weeks."),
-    ("images/vendor.png", "Vendor Filter", "Choose the desired vendor."),
-    ("images/export.png", "Export CSV", "Press Export and save the CSV.")
+    ("images/reports.png", "Reports", "Open REPORTS from the sidebar."),
+    ("images/grouped_sales.png", "Grouped Sales", "Scroll to GROUPED SALES TOTAL."),
+    ("images/item_report.png", "Item Report", "Select ITEM as the report type."),
+    ("images/calendar.png", "Date Filter", "Set DATE RANGE to last 4 weeks."),
+    ("images/vendor.png", "Vendor Filter", "Choose the desired VENDOR."),
+    ("images/export.png", "Export CSV", "Press EXPORT and save the CSV.")
 ]
 
 def render_mini_step(number, image_path, title, desc):
@@ -239,6 +239,8 @@ st.markdown("""
 uploaded_file = st.file_uploader(
     type=["csv"]
 )
+
+st.caption("Use the CSV exported directly from Lightspeed. Do not edit the column names before uploading.")
 
 st.divider()
 
