@@ -129,27 +129,30 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-with st.container(border=True):
-
-    st.markdown("""
-    <h2 style='text-align:center'>
-    First, Export Report from Lightspeed
-    </h2>
-
-    <p style='text-align:center'>
-    Pull the 4-week report before uploading.
-    </p>
+st.markdown("""
+    <div class="card">
+        <h2 style="text-align:center; margin-top:0;">
+            First, Export Report from Lightspeed
+        </h2>
+        <p class="muted" style="text-align:center;">
+            Pull the 4-week report before uploading.
+        </p>
+    </div>
     """, unsafe_allow_html=True)
-     steps = [
-         ("📁", "Reports", "In Lightspeed, select Reports."),
-         ("📊", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
-         ("📦", "Item Report", "Select Item as the report type."),
-         ("📅", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
-         ("🏷️", "Vendor Filter", "Change the vendor filter if needed."),
-         ("⬇️", "Export CSV", "Press Export and save the CSV file.")
+
+    steps = [
+        ("📁", "Reports", "In Lightspeed, select Reports."),
+        ("📊", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
+        ("📦", "Item Report", "Select Item as the report type."),
+        ("📅", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
+        ("🏷️", "Vendor Filter", "Change the vendor filter if needed."),
+        ("⬇️", "Export CSV", "Press Export and save the CSV file.")
     ]
 
+
+
+
+    
     row1 = st.columns(3)
     row2 = st.columns(3)
 
