@@ -12,6 +12,16 @@ st.title("Major Vendor Order Report") # Sets the title for the page
 #             5. Select the Vendor you choose to order from under "Default Vendor"
 #             6. Press "Export"
 #         """)
+
+st.markdown("""
+# Please drag and drop your CSV file below
+""")
+
+uploaded_file = st.file_uploader(
+    "↓ Upload 4 Week Item Report Here ↓",
+    type=["csv"]
+)
+
 st.divider()
 with st.expander("Where do I find this report?"):
     st.write("""
@@ -24,10 +34,7 @@ with st.expander("Where do I find this report?"):
             """)
 st.divider()
 
-uploaded_file = st.file_uploader(
-    "Upload reports_sales_listings CSV",
-    type=["csv"]
-)
+
 if uploaded_file:
     df = pd.read_csv(uploaded_file)
     df["Order Qty"] = np.where(
