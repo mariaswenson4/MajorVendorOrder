@@ -1,7 +1,12 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import base64
 
+def image_to_base64(image_path):
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode()
+        
 st.set_page_config(
     page_title="Major Vendor Order",
     page_icon="📦",
@@ -141,36 +146,41 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 steps = [
-    ("📁", "Reports", "In Lightspeed, select Reports."),
-    ("📊", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
-    ("📦", "Item Report", "Select Item as the report type."),
-    ("📅", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
-    ("🏷️", "Vendor Filter", "Change the vendor filter if needed."),
-    ("⬇️", "Export CSV", "Press Export and save the CSV file.")
+    ("images/reports.png", "Reports", "In Lightspeed, select Reports."),
+    ("images/grouped_sales.png", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
+    ("images/item_report.png", "Item Report", "Select Item as the report type."),
+    ("images/calendar.png", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
+    ("images/vendor.png", "Vendor Filter", "Change the vendor filter if needed."),
+    ("images/export.png", "Export CSV", "Press Export and save the CSV file.")
 ]
 
 row1 = st.columns(3)
 row2 = st.columns(3)
 
 for i, step in enumerate(steps[:3]):
-    icon, title, desc = step
+    image_path, title, desc = step
+    image_base64 = image_to_base64(image_path)
+
     with row1[i]:
         st.markdown(f"""
         <div class="step-card">
             <div class="step-number">{i + 1}</div>
-            <div style="font-size:26px;">{icon}</div>
+            <img src="data:image/png;base64,{image_base64}" width="65" style="margin:0 auto 8px auto;">
             <h4 style="margin:6px 0;">{title}</h4>
             <p class="muted" style="font-size:14px;">{desc}</p>
         </div>
         """, unsafe_allow_html=True)
 
+
 for i, step in enumerate(steps[3:]):
-    icon, title, desc = step
+    image_path, title, desc = step
+    image_base64 = image_to_base64(image_path)
+
     with row2[i]:
         st.markdown(f"""
         <div class="step-card">
             <div class="step-number">{i + 4}</div>
-            <div style="font-size:26px;">{icon}</div>
+            <img src="data:image/png;base64,{image_base64}" width="65" style="margin:0 auto 8px auto;">
             <h4 style="margin:6px 0;">{title}</h4>
             <p class="muted" style="font-size:14px;">{desc}</p>
         </div>
