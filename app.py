@@ -78,58 +78,52 @@ st.markdown("""
 .section-subtitle {
     color: #5C7A58;
     font-size: 16px;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
-.flow-card {
+.step-strip {
     background-color: #FFF9EF;
-    padding: 16px 14px;
-    border-radius: 20px;
     border: 1px solid #D7C8A4;
-    min-height: 155px;
-    text-align: center;
-    box-shadow: 0px 4px 14px rgba(47,55,45,0.07);
+    border-radius: 24px;
+    padding: 22px;
+    box-shadow: 0px 5px 16px rgba(47,55,45,0.07);
 }
 
-.flow-number {
+.mini-step {
+    background-color: #FDF7EA;
+    border: 1px solid #D7C8A4;
+    border-radius: 18px;
+    padding: 14px 10px;
+    min-height: 125px;
+    text-align: center;
+    box-shadow: 0px 3px 10px rgba(47,55,45,0.04);
+}
+
+.mini-number {
     background-color: #C97822;
     color: white;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 999px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    margin-bottom: 8px;
+    font-size: 14px;
+    margin-bottom: 6px;
 }
 
-.flow-card h4 {
+.mini-step h4 {
     color: #1D5A3E;
-    font-size: 18px;
-    margin: 6px 0 4px 0;
+    font-size: 16px;
+    margin: 5px 0 3px 0;
 }
 
-.flow-card p {
+.mini-step p {
     color: #5C7A58;
-    font-size: 13px;
+    font-size: 12px;
     margin: 0;
-}
-
-.arrow {
-    color: #C97822;
-    text-align: center;
-    font-size: 34px;
-    font-weight: 900;
-    padding-top: 58px;
-}
-
-.down-arrow {
-    color: #C97822;
-    text-align: center;
-    font-size: 34px;
-    font-weight: 900;
-    margin: 4px 0;
+    line-height: 1.35;
 }
 
 .stButton button {
@@ -205,62 +199,42 @@ st.markdown("""
 
 steps = [
     ("images/reports.png", "Reports", "Open Reports from the sidebar."),
-    ("images/grouped_sales.png", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
+    ("images/grouped_sales.png", "Grouped Sales", "Scroll to Grouped Sales Totals."),
     ("images/item_report.png", "Item Report", "Select Item as the report type."),
-    ("images/calendar.png", "Date Filter", "Set the date range to the last 4 weeks."),
+    ("images/calendar.png", "Date Filter", "Set date range to last 4 weeks."),
     ("images/vendor.png", "Vendor Filter", "Choose the desired vendor."),
-    ("images/export.png", "Export CSV", "Press Export and save the CSV file.")
+    ("images/export.png", "Export CSV", "Press Export and save the CSV.")
 ]
 
-def render_flow_card(number, image_path, title, desc):
+def render_mini_step(number, image_path, title, desc):
     image_base64 = image_to_base64(image_path)
 
     st.markdown(f"""
-    <div class="flow-card">
-        <div class="flow-number">{number}</div>
+    <div class="mini-step">
+        <div class="mini-number">{number}</div>
         <br>
-        <img src="data:image/png;base64,{image_base64}" width="64" style="margin:0 auto 8px auto;">
+        <img src="data:image/png;base64,{image_base64}" width="42" style="margin:0 auto 5px auto;">
         <h4>{title}</h4>
         <p>{desc}</p>
     </div>
     """, unsafe_allow_html=True)
 
 
-top = st.columns([3, 0.45, 3, 0.45, 3])
+st.markdown('<div class="step-strip">', unsafe_allow_html=True)
 
-with top[0]:
-    render_flow_card(1, *steps[0])
+row1 = st.columns(3)
+for i, step in enumerate(steps[:3]):
+    with row1[i]:
+        render_mini_step(i + 1, *step)
 
-with top[1]:
-    st.markdown("<div class='arrow'>→</div>", unsafe_allow_html=True)
+st.markdown("<div style='height:12px;'></div>", unsafe_allow_html=True)
 
-with top[2]:
-    render_flow_card(2, *steps[1])
+row2 = st.columns(3)
+for i, step in enumerate(steps[3:]):
+    with row2[i]:
+        render_mini_step(i + 4, *step)
 
-with top[3]:
-    st.markdown("<div class='arrow'>→</div>", unsafe_allow_html=True)
-
-with top[4]:
-    render_flow_card(3, *steps[2])
-
-st.markdown("<div class='down-arrow'>↓</div>", unsafe_allow_html=True)
-
-bottom = st.columns([3, 0.45, 3, 0.45, 3])
-
-with bottom[0]:
-    render_flow_card(4, *steps[3])
-
-with bottom[1]:
-    st.markdown("<div class='arrow'>→</div>", unsafe_allow_html=True)
-
-with bottom[2]:
-    render_flow_card(5, *steps[4])
-
-with bottom[3]:
-    st.markdown("<div class='arrow'>→</div>", unsafe_allow_html=True)
-
-with bottom[4]:
-    render_flow_card(6, *steps[5])
+st.markdown("</div>", unsafe_allow_html=True)
 
 
 st.divider()
