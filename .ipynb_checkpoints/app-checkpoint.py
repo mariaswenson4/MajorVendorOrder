@@ -42,20 +42,23 @@ h2, h3 {
 
 .card {
     background-color: #FFF7E3;
-    padding: 18px 28px;
-    border-radius: 18px;
+    padding: 26px 22px;
+    border-radius: 16px;
     border: 1px solid #DDA15E;
-    box-shadow: 0px 4px 14px rgba(40,54,24,0.08);
+    box-shadow: 0px 4px 14px rgba(40,54,24,0.06);
     margin-bottom: 24px;
 }
 
 .step-card {
     background-color: #FFFFFF;
-    padding: 18px;
+    padding: 16px;
     border-radius: 14px;
-    border: 1px solid rgba(221,161,94,0.7);
+    border: 1px solid rgba(221,161,94,0.8);
     text-align: center;
-    min-height: 145px;
+    min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .step-number {
@@ -138,16 +141,14 @@ with st.container(border=True):
     Pull the 4-week report before uploading.
     </p>
     """, unsafe_allow_html=True)
-
-    with st.expander("📊 Show Export Steps"):
-        steps = [
-            ("📁", "Reports", "In Lightspeed, select Reports."),
-            ("📊", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
-            ("📦", "Item Report", "Select Item as the report type."),
-            ("📅", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
-            ("🏷️", "Vendor Filter", "Change the vendor filter if needed."),
-            ("⬇️", "Export CSV", "Press Export and save the CSV file.")
-        ]
+     steps = [
+         ("📁", "Reports", "In Lightspeed, select Reports."),
+         ("📊", "Grouped Sales Totals", "Scroll to Grouped Sales Totals."),
+         ("📦", "Item Report", "Select Item as the report type."),
+         ("📅", "Last 4 Weeks", "Set the date range to the last 4 weeks."),
+         ("🏷️", "Vendor Filter", "Change the vendor filter if needed."),
+         ("⬇️", "Export CSV", "Press Export and save the CSV file.")
+    ]
 
     row1 = st.columns(3)
     row2 = st.columns(3)
