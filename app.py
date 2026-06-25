@@ -2,7 +2,27 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title("Major Vendor Order Report")
+st.title("Major Vendor Order Report") # Sets the title for the page
+# st.info("""
+#         HOW TO USE:
+#             1. In LightSpeed, click on "Reports" in the sidebar
+#             2. Scroll down to "Grouped Sales Totals"
+#             3. Select "Item"
+#             4. For Major Vendor Orders, change the date to account for the last four weeks 
+#             5. Select the Vendor you choose to order from under "Default Vendor"
+#             6. Press "Export"
+#         """)
+st.divider()
+with st.expander("Where do I find this report?"):
+    st.write("""
+            1. In LightSpeed, click on "Reports" in the sidebar
+            2. Scroll down to "Grouped Sales Totals"
+            3. Select "Item"
+            4. For Major Vendor Orders, change the date to account for the last four weeks 
+            5. Select the Vendor you choose to order from under "Default Vendor"
+            6. Press "Export"
+            """)
+st.divider()
 
 uploaded_file = st.file_uploader(
     "Upload reports_sales_listings CSV",
