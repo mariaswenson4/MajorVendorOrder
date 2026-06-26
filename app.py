@@ -83,7 +83,7 @@ section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {
 }
 
 .sidebar-title {
-    font-size: 2.0rem;
+    font-size: 1.75rem;
     font-weight: 900;
     margin-top: .2rem;
 }
@@ -146,7 +146,7 @@ with st.sidebar:
 
     st.divider()
 
-    st.markdown("### 🔎 Find a Report")
+    st.markdown("### :material/search: Find a Report")
 
     search = st.text_input(
         "Search",
@@ -167,21 +167,22 @@ with st.sidebar:
             for name, page in matches.items():
                 sidebar_nav_button(f"Open {name}", page)
         else:
-            st.caption("No matching reports found.")
+            st.caption("Sorry! That report does not exist!")
 
     st.divider()
 
     st.markdown("### Navigation")
 
-    sidebar_nav_button("🏠 Home", "pages/home.py")
-    sidebar_nav_button("🛒 Major Vendor Order", "pages/MVO.py")
-    sidebar_nav_button("🧺 Small Vendor Order", "pages/SVO.py")
+    sidebar_nav_button(":material/home: Home", "pages/home.py")
+    sidebar_nav_button(":material/shopping_cart: Major Vendor Order", "pages/MVO.py")
+    sidebar_nav_button(":material/shopping_basket: Small Vendor Order", "pages/SVO.py")
 
     st.markdown(
         """
         <div class="sidebar-footer">
             Internal Use Only<br>
-            Version 1.0
+            Version 1.0<br>
+            Made by: Maria Swenson
         </div>
         """,
         unsafe_allow_html=True
