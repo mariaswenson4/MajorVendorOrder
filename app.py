@@ -43,9 +43,6 @@ section[data-testid="stSidebar"] h3 {
 section[data-testid="stSidebar"] input {
     border-color: #D7C8A4;
 }
-[data-testid="stToolbar"] {
-    display: none;
-}
 
 [data-testid="stDecoration"] {
     display: none;
