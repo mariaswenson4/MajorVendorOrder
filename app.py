@@ -7,11 +7,11 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-# Pages
+
 home = st.Page(
     "pages/home.py",
     title="Home",
-    icon="🏠︎",
+    icon="🏠",
     default=True
 )
 
@@ -27,9 +27,6 @@ svo = st.Page(
     icon="🧾"
 )
 
-
-# Sidebar styling
-# Sidebar styling
 st.markdown(
     """
 <style>
@@ -51,7 +48,6 @@ section[data-testid="stSidebar"] input {
     unsafe_allow_html=True
 )
 
-# Search shortcut
 st.sidebar.markdown("### Find a Report")
 
 search = st.sidebar.text_input(
@@ -82,12 +78,10 @@ if search:
 
 st.sidebar.divider()
 
-
-# Main built-in sidebar navigation
 pg = st.navigation(
     {
-        " Home": [home],
-        " Ordering Reports": [mvo, svo],
+        "Home": [home],
+        "Ordering Reports": [mvo, svo],
     }
 )
 

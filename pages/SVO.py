@@ -9,6 +9,11 @@ def image_to_base64(image_path):
         return base64.b64encode(image_file.read()).decode()
 
 
+st.set_page_config(
+    page_title="Small Vendor Order",
+    page_icon="images/logo.png",
+    layout="wide"
+)
 
 
 st.markdown("""
