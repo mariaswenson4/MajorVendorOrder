@@ -12,7 +12,7 @@ icons = {
     "ordering": image_to_base64("images/ordering.png"),
     "transfer": image_to_base64("images/item_report.png"),
     "small": image_to_base64("images/small_order.png"),
-    #"inventory": image_to_base64("images/inventory.png"),
+    "brand": image_to_base64("images/brand.png"),
 }
 
 
@@ -49,28 +49,10 @@ tools = [
         "description": "Generate sales report based on brand and time frame.",
         "status": "Planned",
         "category": "Inventory Tools",
-        "icon": "🔄",
+        "icon": icons["brand"],
         "page": None,
         "enabled": False,
-    },
-    {
-        "title": "Markdown Generator",
-        "description": "Create expiration markdown lists and pricing adjustments.",
-        "status": "Planned",
-        "category": "TBD",
-        "icon": "🏷️",
-        "page": None,
-        "enabled": False,
-    },
-    {
-        "title": "MAP Audit",
-        "description": "Compare item pricing against MAP files and vendor pricing rules.",
-        "status": "Planned",
-        "category": "TBD",
-        "icon": "💲",
-        "page": None,
-        "enabled": False,
-    },
+    }
 ]
 
 
