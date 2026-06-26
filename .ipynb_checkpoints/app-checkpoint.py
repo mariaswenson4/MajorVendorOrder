@@ -11,7 +11,7 @@ st.set_page_config(
 home = st.Page(
     "pages/home.py",
     title="Home",
-    icon="🏠",
+    icon="🏠︎",
     default=True
 )
 
@@ -28,30 +28,6 @@ svo = st.Page(
 )
 
 
-# Sidebar styling
-# Sidebar styling
-st.markdown(
-    """
-<style>
-section[data-testid="stSidebar"] {
-    background-color: #FFF9EF;
-    border-right: 1px solid #D7C8A4;
-}
-
-section[data-testid="stSidebar"] h2,
-section[data-testid="stSidebar"] h3 {
-    color: #1D5A3E;
-}
-
-section[data-testid="stSidebar"] input {
-    border-color: #D7C8A4;
-}
-</style>
-""",
-    unsafe_allow_html=True
-)
-
-# Search shortcut
 st.sidebar.markdown("### Find a Report")
 
 search = st.sidebar.text_input(
@@ -79,6 +55,29 @@ if search:
                 st.switch_page(report_links[report_name])
     else:
         st.sidebar.caption("No matching reports found.")
+st.markdown(
+    """
+<style>
+section[data-testid="stSidebar"] {
+    background-color: #FFF9EF;
+    border-right: 1px solid #D7C8A4;
+}
+
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+    color: #1D5A3E;
+}
+
+section[data-testid="stSidebar"] input {
+    border-color: #D7C8A4;
+}
+</style>
+""",
+    unsafe_allow_html=True
+)
+
+# Search shortcut
+
 
 st.sidebar.divider()
 
