@@ -83,9 +83,9 @@ section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {
 }
 
 .sidebar-title {
-    font-size: 1.6rem;
-    font-weight: 800;
-    margin-top: .5rem;
+    font-size: 2.0rem;
+    font-weight: 900;
+    margin-top: .2rem;
 }
 
 .sidebar-subtitle {
@@ -132,7 +132,7 @@ with st.sidebar:
     left, center, right = st.columns([1, 2, 1])
 
     with center:
-        st.image("images/logo.png", width=150)
+        st.image("images/logo.png", width=200)
 
     st.markdown(
     """
