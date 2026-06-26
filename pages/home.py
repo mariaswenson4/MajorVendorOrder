@@ -81,6 +81,7 @@ footer {
     visibility: hidden;
 }
 
+
 [data-testid="stDecoration"] {
     display: none;
 }

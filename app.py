@@ -11,20 +11,20 @@ st.set_page_config(
 home = st.Page(
     "pages/home.py",
     title="Home",
-    icon="🏠",
+    icon=":material/home:",
     default=True
 )
 
 mvo = st.Page(
     "pages/MVO.py",
     title="Major Vendor Order",
-    icon="🛒"
+    icon=":material/shopping_cart:"
 )
 
 svo = st.Page(
     "pages/SVO.py",
     title="Small Vendor Order",
-    icon="🧾"
+    icon=":material/shopping_basket:"
 )
 
 st.markdown(
@@ -51,7 +51,7 @@ section[data-testid="stSidebar"] input {
 st.sidebar.markdown("### Find a Report")
 
 search = st.sidebar.text_input(
-    "Search",
+    ":material/search: Search",
     placeholder="Search reports...",
     label_visibility="collapsed"
 )
