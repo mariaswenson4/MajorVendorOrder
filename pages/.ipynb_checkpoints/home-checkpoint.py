@@ -81,6 +81,7 @@ footer {
     visibility: hidden;
 }
 
+
 [data-testid="stDecoration"] {
     display: none;
 }
@@ -96,10 +97,6 @@ footer {
     padding-bottom: 3rem;
 }
 
-section[data-testid="stSidebar"] {
-    background-color: #FFF9EF;
-    border-right: 1px solid #D7C8A4;
-}
 
 .app-banner {
     background: linear-gradient(135deg, #1D5A3E, #0F3324);
@@ -253,7 +250,7 @@ div[data-testid="stButton"] {
     margin-top: -1px;
 }
 
-.stButton button {
+div[data-testid="stVerticalBlock"] > div:has(.app-card) + div .stButton button {
     width: 100%;
     height: 58px;
     border-radius: 0 0 24px 24px;
@@ -265,7 +262,7 @@ div[data-testid="stButton"] {
     font-weight: 850;
 }
 
-.stButton button:hover {
+div[data-testid="stVerticalBlock"] > div:has(.app-card) + div .stButton button:hover {
     background-color: #EF8B1D;
     color: white;
     border-color: #EF8B1D;
