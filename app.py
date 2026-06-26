@@ -83,7 +83,7 @@ section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {
 }
 
 .sidebar-title {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     font-weight: 800;
     margin-top: .5rem;
 }
@@ -130,15 +130,19 @@ def sidebar_nav_button(label, page):
 with st.sidebar:
     st.markdown('<div class="sidebar-card">', unsafe_allow_html=True)
 
-    st.image("images/logo.png", width=110)
+    left, center, right = st.columns([1, 2, 1])
+
+    with center:
+        st.image("images/logo.png", width=150)
 
     st.markdown(
-        """
+    """
+    <div style="text-align: center;">
         <div class="sidebar-title">Tabby & Jack's</div>
         <div class="sidebar-subtitle">Analytics Hub</div>
-        </div>
-        """,
-        unsafe_allow_html=True
+    </div>
+    """,
+    unsafe_allow_html=True
     )
 
     st.divider()
