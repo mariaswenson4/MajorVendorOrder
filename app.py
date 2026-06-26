@@ -79,7 +79,7 @@ section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {
     border-radius: 18px;
     padding: 18px;
     text-align: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.0rem;
 }
 
 .sidebar-title {
