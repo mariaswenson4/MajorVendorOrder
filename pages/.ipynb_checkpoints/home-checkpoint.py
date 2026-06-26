@@ -10,8 +10,8 @@ def image_to_base64(image_path):
 logo = image_to_base64("images/logo.png")
 icons = {
     "ordering": image_to_base64("images/ordering.png"),
-    #"transfer": image_to_base64("images/transfer.png"),
-    #"pricing": image_to_base64("images/pricing.png"),
+    "transfer": image_to_base64("images/item_report.png"),
+    "small": image_to_base64("images/small_order.png"),
     #"inventory": image_to_base64("images/inventory.png"),
 }
 
@@ -31,7 +31,7 @@ tools = [
         "description": "Upload a 90-day Lightspeed report and generate a small vendor report.",
         "status": "Coming Soon",
         "category": "Ordering Tools",
-        "icon": "📊",
+        "icon": icons["small"],
         "page": None,
         "enabled": False,
     },
@@ -40,7 +40,7 @@ tools = [
         "description": "Transfer Dusty inventory to the stores that need it most.",
         "status": "Coming Soon",
         "category": "Inventory Tools",
-        "icon": "📤",
+        "icon": icons["transfer"],
         "page": None,
         "enabled": False,
     },
