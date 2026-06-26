@@ -55,9 +55,7 @@ section[data-testid="stSidebar"] input {
     unsafe_allow_html=True
 )
 
-st.sidebar.markdown("<div style='height:220px;'></div>", unsafe_allow_html=True)
-
-st.sidebar.markdown("### Find a Report")
+st.sidebar.markdown("### :material/search: Find a Report")
 search = st.sidebar.text_input(
     "Search",
     placeholder="Search reports...",
