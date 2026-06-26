@@ -300,7 +300,7 @@ if uploaded_file:
             font-weight:800;
             margin-bottom:10px;
         ">
-            Recommended Order Preview
+            Major Order Preview
         </h3>
         """, unsafe_allow_html=True)
 
@@ -311,7 +311,7 @@ if uploaded_file:
         upc_order_df = output_df[["UPC", "Order Qty"]].copy()
         upc_order_csv = upc_order_df.to_csv(index=False)
 
-        button_col1, button_col2, metric_col, spacer_col = st.columns([1.4, 1.9, 1, 3])
+        button_col1, button_col2 = st.columns(2)
 
         with button_col1:
             st.download_button(
@@ -323,29 +323,10 @@ if uploaded_file:
 
         with button_col2:
             st.download_button(
-                label="Download UPC + Order Qty",
+                label="Download Order Template",
                 data=upc_order_csv,
-                file_name="upc_order_qty.csv",
+                file_name="Order_Template.csv",
                 mime="text/csv"
-            )
-
-        with metric_col:
-            st.markdown(
-                f"""
-                <div style="
-                    background-color:#FFF9EF;
-                    border:1px solid #D7C8A4;
-                    border-radius:14px;
-                    padding:7px 10px;
-                    text-align:center;
-                    box-shadow:0px 3px 10px rgba(47,55,45,0.05);
-                    max-width:115px;
-                ">
-                    <div style="font-size:11px; color:#2F372D;">Items to Order</div>
-                    <div style="font-size:22px; font-weight:700; color:#1D5A3E;">{len(output_df)}</div>
-                </div>
-                """,
-                unsafe_allow_html=True
             )
 
 else:
