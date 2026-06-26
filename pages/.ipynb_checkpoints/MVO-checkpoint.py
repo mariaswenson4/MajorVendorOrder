@@ -232,7 +232,6 @@ st.divider()
 st.markdown("""
 <div class="section-label">Step 2</div>
 <div class="section-title">Upload Item Sale Report</div>
-<div class="section-subtitle">Upload the 4-week CSV report exported from Lightspeed.</div>
 """, unsafe_allow_html=True)
 
 
@@ -290,7 +289,7 @@ if uploaded_file:
         st.markdown("""
         <div class="section-label">Step 3</div>
         <div class="section-title">Order Results</div>
-        <div class="section-subtitle">Review the recommended order quantities and download your CSV.</div>
+        <div class="section-subtitle">Review the recommended order quantities below, and download your CSV.</div>
         """, unsafe_allow_html=True)
 
         st.markdown("""

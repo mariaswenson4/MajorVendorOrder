@@ -29,11 +29,11 @@ tools = [
     {
         "title": "Small Vendor Order",
         "description": "Upload a 90-day Lightspeed report and generate a small vendor report.",
-        "status": "Coming Soon",
+        "status": "Available",
         "category": "Ordering Tools",
         "icon": icons["small"],
-        "page": None,
-        "enabled": False,
+        "page": "pages/SVO.py",
+        "enabled": True,
     },
     {
         "title": "Dusty Report Transfer",
@@ -41,7 +41,7 @@ tools = [
         "status": "Coming Soon",
         "category": "Inventory Tools",
         "icon": icons["transfer"],
-        "page": None,
+        "page": "pages/dusty.py",
         "enabled": False,
     },
     {
@@ -50,7 +50,7 @@ tools = [
         "status": "Coming Soon",
         "category": "Inventory Tools",
         "icon": icons["brand"],
-        "page": None,
+        "page": "pages/brandsale.py",
         "enabled": False,
     },
     {
