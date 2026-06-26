@@ -177,16 +177,6 @@ with st.sidebar:
     sidebar_nav_button(":material/shopping_cart: Major Vendor Order", "pages/MVO.py")
     sidebar_nav_button(":material/shopping_basket: Small Vendor Order", "pages/SVO.py")
 
-    st.markdown(
-        """
-        <div class="sidebar-footer">
-            Internal Use Only<br>
-            Version 1.0<br>
-            Made by: Maria Swenson
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
 
 
 pg = st.navigation(
