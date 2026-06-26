@@ -1,15 +1,86 @@
 import streamlit as st
 import base64
 
+
 def image_to_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()
 
+
 logo = image_to_base64("images/logo.png")
 ordering = image_to_base64("images/ordering.png")
 
-st.markdown("""
+
+tools = [
+    {
+        "title": "Major Vendor Order",
+        "description": "Upload a 4-week Lightspeed report and generate a major vendor order.",
+        "status": "Available",
+        "category": "Reports",
+        "icon": "📦",
+        "page": "pages/MVO.py",
+        "enabled": True,
+    },
+    {
+        "title": "Small Vendor Order",
+        "description": "Upload a 90-day Lightspeed report and generate a small vendor report.",
+        "status": "Coming Soon",
+        "category": "Reports",
+        "icon": "📊",
+        "page": None,
+        "enabled": False,
+    },
+    {
+        "title": "Dusty Report Transfer",
+        "description": "Transfer Dusty reports into the correct folder structure for daily use.",
+        "status": "Coming Soon",
+        "category": "Operations",
+        "icon": "📤",
+        "page": None,
+        "enabled": False,
+    },
+    {
+        "title": "Inventory Transfer",
+        "description": "Prepare inventory transfer files and store movement reports.",
+        "status": "Planned",
+        "category": "Operations",
+        "icon": "🔄",
+        "page": None,
+        "enabled": False,
+    },
+    {
+        "title": "Markdown Generator",
+        "description": "Create expiration markdown lists and pricing adjustments.",
+        "status": "Planned",
+        "category": "Pricing",
+        "icon": "🏷️",
+        "page": None,
+        "enabled": False,
+    },
+    {
+        "title": "MAP Audit",
+        "description": "Compare item pricing against MAP files and vendor pricing rules.",
+        "status": "Planned",
+        "category": "Pricing",
+        "icon": "💲",
+        "page": None,
+        "enabled": False,
+    },
+]
+
+
+st.markdown(
+    """
 <style>
+footer {
+    visibility: hidden;
+}
+
+[data-testid="stToolbar"],
+[data-testid="stDecoration"] {
+    display: none;
+}
+
 .stApp {
     background-color: #F6F1E5;
     color: #2F372D;
@@ -29,12 +100,12 @@ section[data-testid="stSidebar"] {
 .app-banner {
     background: linear-gradient(135deg, #1D5A3E, #0F3324);
     border-radius: 22px;
-    padding: 30px 38px;
-    margin-bottom: 34px;
-    min-height: 210px;
+    padding: 24px 34px;
+    margin-bottom: 30px;
+    min-height: 165px;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 28px;
     box-shadow: 0px 12px 30px rgba(29,90,62,.22);
 }
 
@@ -42,24 +113,24 @@ section[data-testid="stSidebar"] {
     background: rgba(255,249,239,.10);
     border: 1px solid rgba(255,249,239,.18);
     border-radius: 22px;
-    padding: 18px;
+    padding: 16px;
 }
 
 .banner-title h1 {
     color: #FFF9EF;
-    font-size: 44px;
+    font-size: 42px;
     font-weight: 850;
     margin: 0;
 }
 
 .banner-title p {
     color: rgba(255,249,239,.88);
-    font-size: 18px;
+    font-size: 17px;
     margin: 10px 0 0 0;
 }
 
 .section-kicker {
-    color: #C97822;
+    color: #EF8B1D;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1.4px;
@@ -80,12 +151,38 @@ section[data-testid="stSidebar"] {
     margin-bottom: 24px;
 }
 
+.category-title {
+    color: #1D5A3E;
+    font-size: 22px;
+    font-weight: 850;
+    margin: 28px 0 14px 0;
+}
+
 .app-card {
     background-color: #FFFDF8;
     border: 1px solid #D7C8A4;
     border-radius: 24px 24px 0 0;
-    min-height: 230px;
+    min-height: 220px;
     box-shadow: 0px 7px 22px rgba(47,55,45,.08);
+    position: relative;
+    overflow: hidden;
+    transition: all .18s ease;
+}
+
+.app-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 14px 34px rgba(29,90,62,.16);
+    border-color: #EF8B1D;
+}
+
+.app-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 6px;
+    background: #EF8B1D;
 }
 
 .app-card-body {
@@ -108,11 +205,12 @@ section[data-testid="stSidebar"] {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 34px;
 }
 
 .app-card h3 {
     color: #1D5A3E;
-    font-size: 25px;
+    font-size: 24px;
     font-weight: 850;
     margin: 0;
 }
@@ -120,15 +218,23 @@ section[data-testid="stSidebar"] {
 .status-pill {
     display: inline-block;
     margin-top: 8px;
-    background: #E9F1E7;
-    color: #1D5A3E;
     border-radius: 999px;
     padding: 5px 10px;
     font-size: 12px;
     font-weight: 800;
 }
 
-.status-pill-muted {
+.status-available {
+    background: #E6F5EC;
+    color: #1D5A3E;
+}
+
+.status-soon {
+    background: #FFF2DF;
+    color: #EF8B1D;
+}
+
+.status-planned {
     background: #EFE8D7;
     color: #7B776E;
 }
@@ -151,15 +257,15 @@ div[data-testid="stButton"] {
     border: 1px solid #D7C8A4;
     border-top: none;
     background-color: #FFF7EA;
-    color: #C97822;
+    color: #EF8B1D;
     font-size: 16px;
     font-weight: 850;
 }
 
 .stButton button:hover {
-    background-color: #C97822;
+    background-color: #EF8B1D;
     color: white;
-    border-color: #C97822;
+    border-color: #EF8B1D;
 }
 
 .disabled-footer {
@@ -175,109 +281,200 @@ div[data-testid="stButton"] {
     font-weight: 850;
 }
 
-.info-banner {
+.quick-start {
     background-color: #FFF9EF;
     border: 1px solid #D7C8A4;
-    border-radius: 20px;
-    padding: 20px 24px;
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    box-shadow: 0px 4px 14px rgba(47,55,45,.06);
+    border-radius: 22px;
+    padding: 24px 28px;
+    margin-top: 34px;
+    box-shadow: 0px 5px 16px rgba(47,55,45,.06);
 }
 
-.info-icon {
+.quick-start h3 {
+    color: #1D5A3E;
+    font-size: 24px;
+    font-weight: 850;
+    margin: 0 0 14px 0;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.step {
+    background-color: #FFFDF8;
+    border: 1px solid #E3D6B8;
+    border-radius: 18px;
+    padding: 18px;
+}
+
+.step-number {
     background-color: #1D5A3E;
     color: white;
-    min-width: 40px;
-    height: 40px;
+    width: 34px;
+    height: 34px;
     border-radius: 999px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 850;
+    margin-bottom: 10px;
 }
 
-.info-title {
+.step-title {
     color: #1D5A3E;
-    font-size: 17px;
     font-weight: 850;
+    margin-bottom: 4px;
 }
 
-.info-text {
+.step-text {
     color: #5C7A58;
-    font-size: 14.5px;
+    font-size: 14px;
+}
+
+.footer-note {
+    text-align: center;
+    color: #7B776E;
+    font-size: 13px;
+    margin-top: 34px;
+}
+
+@media (max-width: 900px) {
+    .app-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .banner-title h1 {
+        font-size: 34px;
+    }
 }
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
-st.markdown(f"""
+
+st.markdown(
+    f"""
 <div class="app-banner">
-<div class="banner-logo">
-<img src="data:image/png;base64,{logo}" width="105">
+    <div class="banner-logo">
+        <img src="data:image/png;base64,{logo}" width="100">
+    </div>
+    <div class="banner-title">
+        <h1>Tabby & Jack's Operations Hub</h1>
+        <p>Internal reports, ordering tools, pricing workflows, and daily operations support.</p>
+    </div>
 </div>
-<div class="banner-title">
-<h1>Tabby & Jack's Analytics</h1>
-<p>Frequently used reporting tools for Tabby & Jack's</p>
-</div>
-</div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
-st.markdown("""
-<div class="section-kicker">Reports</div>
-<div class="section-title">Application Launcher</div>
-<div class="section-subtitle">Open a report tool below to get started.</div>
-""", unsafe_allow_html=True)
 
-col1, col2 = st.columns(2, gap="large")
+st.markdown(
+    """
+<div class="section-kicker">Daily Tools</div>
+<div class="section-title">Reporting Dashboard</div>
+<div class="section-subtitle">Choose a workflow below to get started.</div>
+""",
+    unsafe_allow_html=True,
+)
 
-with col1:
-    st.markdown(f"""
+
+def status_class(status):
+    if status == "Available":
+        return "status-available"
+    if status == "Coming Soon":
+        return "status-soon"
+    return "status-planned"
+
+
+def render_tool_card(tool, key):
+    st.markdown(
+        f"""
 <div class="app-card">
-<div class="app-card-body">
-<div class="app-card-top">
-<div class="app-icon-wrap">
-<img src="data:image/png;base64,{ordering}" width="55">
+    <div class="app-card-body">
+        <div class="app-card-top">
+            <div class="app-icon-wrap">{tool["icon"]}</div>
+            <div>
+                <h3>{tool["title"]}</h3>
+                <div class="status-pill {status_class(tool["status"])}">{tool["status"]}</div>
+            </div>
+        </div>
+        <p>{tool["description"]}</p>
+    </div>
 </div>
-<div>
-<h3>Major Vendor Order</h3>
-<div class="status-pill">Available</div>
-</div>
-</div>
-<p>Upload a 4-week Lightspeed report and generate a major vendor report.</p>
-</div>
-</div>
-""", unsafe_allow_html=True)
+""",
+        unsafe_allow_html=True,
+    )
 
-    if st.button("Open Major Vendor Order  →", use_container_width=True, key="open_mvo"):
-        st.switch_page("pages/MVO.py")
+    if tool["enabled"]:
+        if st.button(f"Open {tool['title']}  →", use_container_width=True, key=key):
+            st.switch_page(tool["page"])
+    else:
+        st.markdown(
+            f"""
+<div class="disabled-footer">{tool["status"]}  →</div>
+""",
+            unsafe_allow_html=True,
+        )
 
-with col2:
-    st.markdown(f"""
-<div class="app-card">
-<div class="app-card-body">
-<div class="app-card-top">
-<div class="app-icon-wrap">
-<img src="data:image/png;base64,{ordering}" width="55">
-</div>
-<div>
-<h3>Small Vendor Order</h3>
-<div class="status-pill status-pill-muted">Coming Soon</div>
-</div>
-</div>
-<p>Upload a 90-day Lightspeed report and generate a small vendor report.</p>
-</div>
-</div>
-<div class="disabled-footer">Coming Soon  →</div>
-""", unsafe_allow_html=True)
 
-st.markdown("""
-<div class="info-banner">
-<div class="info-icon">i</div>
-<div>
-<div class="info-title">More tools and reports are on the way.</div>
-<div class="info-text">This dashboard will grow as more internal reporting tools are added.</div>
+categories = ["Reports", "Operations", "Pricing"]
+
+for category in categories:
+    category_tools = [tool for tool in tools if tool["category"] == category]
+
+    st.markdown(
+        f"""
+<div class="category-title">{category}</div>
+""",
+        unsafe_allow_html=True,
+    )
+
+    for i in range(0, len(category_tools), 2):
+        cols = st.columns(2, gap="large")
+
+        for col, tool in zip(cols, category_tools[i:i + 2]):
+            with col:
+                render_tool_card(
+                    tool,
+                    key=f"open_{tool['title'].lower().replace(' ', '_')}",
+                )
+
+
+st.markdown(
+    """
+<div class="quick-start">
+    <h3>Quick Start</h3>
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-title">Pull your report</div>
+            <div class="step-text">Export the needed report from Lightspeed, Dusty, or the correct system.</div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-title">Upload the file</div>
+            <div class="step-text">Open the correct tool and upload the CSV or spreadsheet.</div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-title">Download output</div>
+            <div class="step-text">Use the finished file for ordering, pricing, transfers, or reporting.</div>
+        </div>
+    </div>
 </div>
+
+<div class="footer-note">
+    Tabby & Jack's Operations Hub · Version 1.0 · Built for internal use
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
