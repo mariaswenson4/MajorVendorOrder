@@ -71,9 +71,28 @@ header[data-testid="stHeader"] {
     background: transparent;
 }
 
+section[data-testid="stSidebar"] div[data-testid="stButton"] button {
+    background-color: #D18936 !important;
+    color: #FFF9EF !important;
+    border: 1px solid #D18936 !important;
+    border-radius: 12px !important;
+    height: 42px !important;
+    font-weight: 800 !important;
+}
+
+section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {
+    background-color: #F3A653 !important;
+    color: #1D5A3E !important;
+    border-color: #F3A653 !important;
+}
+
 /* Hide Streamlit decoration/menu/footer */
 [data-testid="stDecoration"] {
     display: none;
+}
+
+button[data-testid="stBaseButton-headerNoPadding"] {
+    display: none !important;
 }
 
 #MainMenu,
