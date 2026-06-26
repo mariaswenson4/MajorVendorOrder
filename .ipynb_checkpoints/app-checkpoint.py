@@ -168,7 +168,6 @@ with st.sidebar:
         else:
             st.caption("Sorry! That report does not exist!")
 
-    st.divider()
 
     st.markdown("### Navigation")
 
