@@ -90,7 +90,7 @@ st.sidebar.divider()
 
 pg = st.navigation(
     {
-        [
+        "Navigation": [
             home,
             mvo,
             svo,
