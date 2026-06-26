@@ -290,21 +290,16 @@ if uploaded_file:
         <div class="section-subtitle">Review the recommended order quantities and download your CSV.</div>
         """, unsafe_allow_html=True)
 
-        col1, col2, col3 = st.columns(3)
+        col1, col2 = st.columns([1, 3])
 
         with col1:
             st.metric("Items to Order", len(output_df))
 
-        with col2:
-            st.metric("Total Units", int(output_df["Order Qty"].sum()))
-
-        with col3:
-            st.metric(
-                "Top Order Qty",
-                int(output_df["Order Qty"].max()) if len(output_df) > 0 else 0
-            )
-
-        st.markdown("### Recommended Order Preview")
+        st.markdown("""
+        <div class="section-title" style="font-size:24px; margin-top:18px;">
+                Recommended Order Preview
+        </div>
+        """, unsafe_allow_html=True)
         st.dataframe(output_df.head(50), use_container_width=True)
 
         csv = output_df.to_csv(index=False)
