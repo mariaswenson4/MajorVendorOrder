@@ -128,12 +128,14 @@ def sidebar_nav_button(label, page):
 
 
 with st.sidebar:
+    st.markdown('<div class="sidebar-card">', unsafe_allow_html=True)
+
+    st.image("images/logo.png", width=110)
+
     st.markdown(
         """
-        <div class="sidebar-card">
-            <img src="images/logo.png" width="110">
-            <div class="sidebar-title">Tabby & Jack's</div>
-            <div class="sidebar-subtitle">Analytics Hub</div>
+        <div class="sidebar-title">Tabby & Jack's</div>
+        <div class="sidebar-subtitle">Analytics Hub</div>
         </div>
         """,
         unsafe_allow_html=True
