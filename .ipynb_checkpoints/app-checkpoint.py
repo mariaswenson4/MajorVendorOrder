@@ -128,7 +128,6 @@ def sidebar_nav_button(label, page):
 
 
 with st.sidebar:
-    st.markdown('<div class="sidebar-card">', unsafe_allow_html=True)
 
     left, center, right = st.columns([1, 2, 1])
 
