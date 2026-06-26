@@ -5,7 +5,7 @@ st.set_page_config(
     page_title="Tabby & Jack's Analytics",
     page_icon="images/logo.png",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 home = st.Page(
@@ -46,14 +46,21 @@ section[data-testid="stSidebar"] input {
     border-color: #D7C8A4;
 }
 
-/* Keep header so sidebar button works, but make it invisible */
+/* Keep header alive for sidebar toggle */
 header[data-testid="stHeader"] {
     background: transparent;
+    height: 3rem;
 }
 
-/* Hide top-right Streamlit buttons */
+/* Hide only the right-side Streamlit toolbar */
 [data-testid="stToolbar"] {
-    display: none;
+    visibility: hidden;
+}
+
+/* Make sidebar collapse/expand button visible */
+button[kind="header"] {
+    visibility: visible !important;
+    display: flex !important;
 }
 
 /* Hide decoration line */
@@ -62,15 +69,12 @@ header[data-testid="stHeader"] {
 }
 
 /* Hide menu/footer */
-#MainMenu {
-    visibility: hidden;
-}
-
+#MainMenu,
 footer {
     visibility: hidden;
 }
 
-/* Optional: reduce top spacing */
+/* Reduce top spacing */
 .block-container {
     padding-top: 2rem;
 }
