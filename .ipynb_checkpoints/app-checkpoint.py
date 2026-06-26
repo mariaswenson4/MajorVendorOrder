@@ -30,7 +30,7 @@ st.markdown(
     """
 <style>
 section[data-testid="stSidebar"] {
-    background-color: #FFF9EF;
+    background-color: #A4C2A5;
     border-right: 1px solid #D7C8A4;
 }
 
