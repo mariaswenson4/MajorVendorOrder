@@ -81,7 +81,6 @@ footer {
     visibility: hidden;
 }
 
-[data-testid="stToolbar"],
 [data-testid="stDecoration"] {
     display: none;
 }
@@ -297,44 +296,6 @@ div[data-testid="stButton"] {
 )
 
 
-# SIDEBAR NAVIGATION + SEARCH
-
-st.sidebar.markdown(
-    f"""
-    <div style="text-align:center; margin-bottom:18px;">
-        <img src="data:image/png;base64,{logo}" width="80">
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-st.sidebar.markdown("## Reports")
-
-search = st.sidebar.text_input(
-    "Search reports",
-    placeholder="Search tools..."
-)
-
-available_tools = [
-    tool for tool in tools
-    if search.lower() in tool["title"].lower()
-    or search.lower() in tool["description"].lower()
-    or search.lower() in tool["category"].lower()
-]
-
-for tool in available_tools:
-    if tool["enabled"]:
-        if st.sidebar.button(tool["title"], use_container_width=True):
-            st.switch_page(tool["page"])
-    else:
-        st.sidebar.button(
-            f"{tool['title']} · Coming Soon",
-            disabled=True,
-            use_container_width=True
-        )
-
-
-# MAIN PAGE
 
 st.markdown(
     f"""
