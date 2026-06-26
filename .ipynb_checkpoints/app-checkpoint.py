@@ -5,7 +5,7 @@ st.set_page_config(
     page_title="Tabby & Jack's Analytics",
     page_icon="images/logo.png",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"
 )
 
 home = st.Page(
@@ -27,7 +27,6 @@ svo = st.Page(
     icon=":material/shopping_basket:"
 )
 
-
 st.markdown(
     """
 <style>
@@ -46,35 +45,32 @@ section[data-testid="stSidebar"] input {
     border-color: #D7C8A4;
 }
 
-/* Keep header alive for sidebar toggle */
+/* Do NOT hide the whole header or sidebar button breaks */
 header[data-testid="stHeader"] {
     background: transparent;
-    height: 3rem;
 }
 
-/* Hide only the right-side Streamlit toolbar */
+/* Hide app toolbar icons */
 [data-testid="stToolbar"] {
-    visibility: hidden;
+    display: none !important;
 }
 
-/* Make sidebar collapse/expand button visible */
-button[kind="header"] {
-    visibility: visible !important;
-    display: flex !important;
+/* Hide deploy/share area */
+[data-testid="stStatusWidget"] {
+    display: none !important;
 }
 
-/* Hide decoration line */
+/* Hide decoration */
 [data-testid="stDecoration"] {
-    display: none;
+    display: none !important;
 }
 
-/* Hide menu/footer */
+/* Hide main menu/footer */
 #MainMenu,
 footer {
     visibility: hidden;
 }
 
-/* Reduce top spacing */
 .block-container {
     padding-top: 2rem;
 }
@@ -82,7 +78,6 @@ footer {
 """,
     unsafe_allow_html=True
 )
-
 st.sidebar.markdown("### :material/search: Find a Report")
 search = st.sidebar.text_input(
     "Search",
@@ -119,8 +114,8 @@ pg = st.navigation(
             mvo,
             svo,
         ]
-    }
-
+    },
+    position="sidebar"
 )
 
 pg.run()
