@@ -239,6 +239,7 @@ st.markdown("""
 uploaded_file = st.file_uploader(
     "Upload 4-week Lightspeed CSV",
     type=["csv"]
+    label_visibility="collapsed"
 )
 
 st.caption("Use the CSV exported directly from Lightspeed. Do not edit the column names before uploading.")
