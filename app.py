@@ -157,6 +157,7 @@ with st.sidebar:
     <div style="text-align: center;">
         <div class="sidebar-title">Tabby & Jack's</div>
         <div class="sidebar-subtitle">Analytics Hub</div>
+    </div>
     """,
     unsafe_allow_html=True
     )
