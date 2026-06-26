@@ -143,7 +143,7 @@ with st.sidebar:
     unsafe_allow_html=True
     )
 
-    st.divider()
+
 
     st.markdown("### :material/search: Find a Report")
 
@@ -168,6 +168,7 @@ with st.sidebar:
         else:
             st.caption("Sorry! That report does not exist!")
 
+    st.divider()
 
     st.markdown("### Navigation")
 
