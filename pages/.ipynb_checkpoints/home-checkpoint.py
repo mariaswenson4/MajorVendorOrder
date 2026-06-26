@@ -2,6 +2,13 @@ import streamlit as st
 import base64
 
 
+st.set_page_config(
+    page_title="Tabby & Jack's Analytics Hub",
+    page_icon="images/logo.png",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 def image_to_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()
@@ -79,9 +86,8 @@ st.markdown(
 <style>
 footer {
     visibility: hidden;
-}
 
-[data-testid="stToolbar"],
+
 [data-testid="stDecoration"] {
     display: none;
 }
