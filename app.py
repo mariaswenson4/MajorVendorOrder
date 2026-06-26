@@ -3,7 +3,8 @@ import streamlit as st
 st.set_page_config(
     page_title="Tabby & Jack's Analytics",
     page_icon="images/logo.png",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 home = st.Page(
