@@ -47,8 +47,26 @@ tools = [
     {
         "title": "Sales by Brand",
         "description": "Generate sales report based on brand and time frame.",
-        "status": "Planned",
+        "status": "Coming Soon",
         "category": "Inventory Tools",
+        "icon": icons["brand"],
+        "page": None,
+        "enabled": False,
+    },
+    {
+        "title": "Vendor Contact Sheet",
+        "description": "Link to google sheet containing information about how to contact vendors/reps.",
+        "status": "Coming Soon",
+        "category": "Office Hour Tools",
+        "icon": icons["brand"],
+        "page": None,
+        "enabled": False,
+    },
+    {
+        "title": "Office Hour Tacker",
+        "description": "Exclusively for work from home employee's to track their working office hours.",
+        "status": "Coming Soon",
+        "category": "Office Hour Tools",
         "icon": icons["brand"],
         "page": None,
         "enabled": False,
@@ -135,14 +153,14 @@ section[data-testid="stSidebar"] {
 .section-subtitle {
     color: #5C7A58;
     font-size: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 10px;
 }
 
 .category-title {
     color: #1D5A3E;
     font-size: 22px;
     font-weight: 850;
-    margin: 28px 0 14px 0;
+    margin: 10px 0 12px 0;
 }
 
 .app-card {
@@ -424,7 +442,7 @@ def render_tool_card(tool, key):
         )
 
 
-categories = ["Ordering Tools", "Inventory Tools", "TBD"]
+categories = ["Ordering Tools", "Inventory Tools", "Office Hour Tools"]
 
 for category in categories:
     category_tools = [tool for tool in tools if tool["category"] == category]
