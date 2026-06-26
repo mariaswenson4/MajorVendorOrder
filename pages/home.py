@@ -32,7 +32,7 @@ tools = [
         "status": "Coming Soon",
         "category": "Ordering Tools",
         "icon": icons["small"],
-        "page": None,
+        "page": "pages/SVO.py",
         "enabled": False,
     },
     {
@@ -41,7 +41,7 @@ tools = [
         "status": "Coming Soon",
         "category": "Inventory Tools",
         "icon": icons["transfer"],
-        "page": None,
+        "page": "pages/dusty.py",
         "enabled": False,
     },
     {
@@ -50,7 +50,7 @@ tools = [
         "status": "Coming Soon",
         "category": "Inventory Tools",
         "icon": icons["brand"],
-        "page": None,
+        "page": "pages/brandsale.py",
         "enabled": False,
     },
     {

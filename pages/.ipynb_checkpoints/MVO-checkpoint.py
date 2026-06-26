@@ -237,6 +237,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader(
+    "Upload 4-week Lightspeed CSV",
     type=["csv"]
 )
 
