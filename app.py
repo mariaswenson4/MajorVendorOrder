@@ -30,17 +30,17 @@ st.markdown(
     """
 <style>
 section[data-testid="stSidebar"] {
-    background-color: #5C8067;
-    border-right: 1px solid #F3A653;
+    background-color: #FFF9EF;
+    border-right: 1px solid #D7C8A4;
 }
 
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 {
-    color: #5C8067;
+    color: #1D5A3E;
 }
 
 section[data-testid="stSidebar"] input {
-    border-color: #F3A653;
+    border-color: #D7C8A4;
 }
 
 [data-testid="stDecoration"] {
