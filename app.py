@@ -86,9 +86,13 @@ st.sidebar.divider()
 
 pg = st.navigation(
     {
-        "Home": [home],
-        "Ordering Reports": [mvo, svo],
+        "Navigation": [
+            home,
+            mvo,
+            svo,
+        ]
     }
+
 )
 
 pg.run()
