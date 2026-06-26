@@ -146,7 +146,7 @@ with st.sidebar:
 
     sidebar_nav_button(":material/home: Home", "pages/home.py")
     sidebar_nav_button(":material/shopping_cart: Major Vendor Order", "pages/MVO.py")
-    sidebar_nav_button(":material/shopping_basket", "pages/SVO.py")
+    sidebar_nav_button(":material/shopping_basket:", "pages/SVO.py")
 
 
 pg = st.navigation(
