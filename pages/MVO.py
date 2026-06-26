@@ -311,22 +311,28 @@ if uploaded_file:
         upc_order_df = output_df[["UPC", "Order Qty"]].copy()
         upc_order_csv = upc_order_df.to_csv(index=False)
 
-        button_col1, button_col2 = st.columns(2)
+        left, middle, right = st.columns([1, 4, 1])
 
-        with button_col1:
+        with left:
             st.download_button(
-                label="Download Full CSV",
-                data=full_csv,
-                file_name="major_vendor_order_output.csv",
-                mime="text/csv"
+            label="Download Full CSV",
+            data=full_csv,
+            file_name="major_vendor_order_output.csv",
+            mime="text/csv",
+            use_container_width=True
             )
 
-        with button_col2:
+        with right:
+            st.warning(
+                "ⓘ **Heads up!** Please do **not** open this file. "
+                "Instead, import it directly into a Lightspeed Purchase Order."
+            )
             st.download_button(
                 label="Download Order Template",
                 data=upc_order_csv,
-                file_name="Order_Template.csv",
-                mime="text/csv"
+                file_name="upc_order_template.csv",
+                mime="text/csv",
+                use_container_width=True
             )
 
 else:
