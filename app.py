@@ -18,19 +18,18 @@ home = st.Page(
 mvo = st.Page(
     "pages/MVO.py",
     title="Major Vendor Order",
-    icon=":material/shopping_cart:"
+    icon=":material/shopping_cart"
 )
 
 svo = st.Page(
     "pages/SVO.py",
     title="Small Vendor Order",
-    icon=":material/shopping_basket:"
+    icon="🧾"
 )
 
 st.markdown(
     """
 <style>
-/* Sidebar styling */
 section[data-testid="stSidebar"] {
     background-color: #FFF9EF;
     border-right: 1px solid #D7C8A4;
@@ -44,41 +43,13 @@ section[data-testid="stSidebar"] h3 {
 section[data-testid="stSidebar"] input {
     border-color: #D7C8A4;
 }
-
-/* Do NOT hide the whole header or sidebar button breaks */
-header[data-testid="stHeader"] {
-    background: transparent;
-}
-
-/* Hide app toolbar icons */
-[data-testid="stToolbar"] {
-    display: none !important;
-}
-
-/* Hide deploy/share area */
-[data-testid="stStatusWidget"] {
-    display: none !important;
-}
-
-/* Hide decoration */
-[data-testid="stDecoration"] {
-    display: none !important;
-}
-
-/* Hide main menu/footer */
-#MainMenu,
-footer {
-    visibility: hidden;
-}
-
-.block-container {
-    padding-top: 2rem;
-}
 </style>
 """,
     unsafe_allow_html=True
 )
-st.sidebar.markdown("### :material/search: Find a Report")
+
+st.sidebar.markdown("### Find a Report")
+
 search = st.sidebar.text_input(
     "Search",
     placeholder="Search reports...",
@@ -109,13 +80,9 @@ st.sidebar.divider()
 
 pg = st.navigation(
     {
-        "Navigation": [
-            home,
-            mvo,
-            svo,
-        ]
-    },
-    position="sidebar"
+        "Home": [home],
+        "Ordering Reports": [mvo, svo],
+    }
 )
 
 pg.run()
