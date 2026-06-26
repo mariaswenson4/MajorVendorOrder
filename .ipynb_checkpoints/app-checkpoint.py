@@ -29,6 +29,9 @@ pages = {
 report_links = {
     "Major Vendor Order": "pages/MVO.py",
     "Small Vendor Order": "pages/SVO.py",
+    "Dusty Report Transfer": "pages/dusty.py",
+    "Sales by Brand": "pages/brandsale.py",
+    "Links": "pages/links.py"
 }
 
 st.markdown(
