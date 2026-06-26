@@ -175,9 +175,9 @@ with st.sidebar:
     sidebar_nav_button(":material/home: Home", "pages/home.py")
     sidebar_nav_button(":material/shopping_cart: Major Vendor Order", "pages/MVO.py")
     sidebar_nav_button(":material/shopping_basket: Small Vendor Order", "pages/SVO.py")
-    sidebar_nav_button(":material/move_item: Small Vendor Order", "pages/dusty.py")
-    sidebar_nav_button(":material/filter_list: Small Vendor Order", "pages/brandsale.py")
-    sidebar_nav_button(":material/link: Small Vendor Order", "pages/links.py")
+    sidebar_nav_button(":material/move_item: Dusty Report Transfer", "pages/dusty.py")
+    sidebar_nav_button(":material/filter_list: Sales by Brand", "pages/brandsale.py")
+    sidebar_nav_button(":material/link: QUICK LINKS", "pages/links.py")
 
 
 
