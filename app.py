@@ -132,16 +132,16 @@ with st.sidebar:
 
     st.divider()
 
-st.markdown("### Navigation")
+    st.markdown("### Navigation")
 
-if st.button("🏠 Home", use_container_width=True):
-    st.switch_page("pages/home.py")
+    if st.button("🏠 Home", use_container_width=True):
+        st.switch_page("pages/home.py")
 
-if st.button("🛒 Major Vendor Order", use_container_width=True):
-    st.switch_page("pages/MVO.py")
+    if st.button("🛒 Major Vendor Order", use_container_width=True):
+        st.switch_page("pages/MVO.py")
 
-if st.button("🧺 Small Vendor Order", use_container_width=True):
-    st.switch_page("pages/SVO.py")
+    if st.button("🧺 Small Vendor Order", use_container_width=True):
+        st.switch_page("pages/SVO.py")
 
 # Hide default Streamlit navigation
 pg = st.navigation(
