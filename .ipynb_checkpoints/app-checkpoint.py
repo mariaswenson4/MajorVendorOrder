@@ -7,24 +7,29 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-home = st.Page(
-    "pages/home.py",
-    title="Home",
-    icon=":material/home:",
-    default=True
-)
+pages = {
+    "Home": st.Page(
+        "pages/home.py",
+        title="Home",
+        icon=":material/home:",
+        default=True
+    ),
+    "Major Vendor Order": st.Page(
+        "pages/MVO.py",
+        title="Major Vendor Order",
+        icon=":material/shopping_cart:"
+    ),
+    "Small Vendor Order": st.Page(
+        "pages/SVO.py",
+        title="Small Vendor Order",
+        icon=":material/shopping_basket:"
+    ),
+}
 
-mvo = st.Page(
-    "pages/MVO.py",
-    title="Major Vendor Order",
-    icon=":material/shopping_cart:"
-)
-
-svo = st.Page(
-    "pages/SVO.py",
-    title="Small Vendor Order",
-    icon=":material/shopping_basket:"
-)
+report_links = {
+    "Major Vendor Order": "pages/MVO.py",
+    "Small Vendor Order": "pages/SVO.py",
+}
 
 st.markdown(
     """
@@ -38,7 +43,6 @@ section[data-testid="stSidebar"] * {
     color: #FFF9EF !important;
 }
 
-/* Search input */
 section[data-testid="stSidebar"] input {
     background: #FFF9EF !important;
     color: #1D5A3E !important;
@@ -50,25 +54,8 @@ section[data-testid="stSidebar"] input::placeholder {
     color: #777777 !important;
 }
 
-/* Sidebar links */
-section[data-testid="stSidebar"] a {
-    border-radius: 12px !important;
-    padding: .45rem .65rem !important;
-    text-decoration: none !important;
-}
-
-section[data-testid="stSidebar"] a:hover {
-    background: rgba(243, 166, 83, .22) !important;
-}
-
-/* Divider */
 section[data-testid="stSidebar"] hr {
     border-color: rgba(255, 249, 239, .25);
-}
-
-/* Keep header so sidebar can reopen */
-header[data-testid="stHeader"] {
-    background: transparent;
 }
 
 section[data-testid="stSidebar"] div[data-testid="stButton"] button {
@@ -86,7 +73,10 @@ section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {
     border-color: #F3A653 !important;
 }
 
-/* Hide Streamlit decoration/menu/footer */
+header[data-testid="stHeader"] {
+    background: transparent;
+}
+
 [data-testid="stDecoration"] {
     display: none;
 }
@@ -104,7 +94,12 @@ footer {
     unsafe_allow_html=True
 )
 
-# Custom sidebar header
+
+def sidebar_nav_button(label, page):
+    if st.button(label, use_container_width=True):
+        st.switch_page(page)
+
+
 with st.sidebar:
     st.image("images/logo.png", width=115)
 
@@ -122,30 +117,26 @@ with st.sidebar:
 
     st.divider()
 
-    st.markdown("### 🔎 Find a Report")
+    st.markdown("### :material/search: Find a Report")
+
     search = st.text_input(
         "Search",
         placeholder="Search reports...",
         label_visibility="collapsed"
     )
 
-    report_links = {
-        "Major Vendor Order": "pages/MVO.py",
-        "Small Vendor Order": "pages/SVO.py",
-    }
-
     if search:
-        filtered_reports = [
-            name for name in report_links
-            if search.lower() in name.lower()
-        ]
-
         st.markdown("**Results**")
 
-        if filtered_reports:
-            for report_name in filtered_reports:
-                if st.button(f"Open {report_name}", use_container_width=True):
-                    st.switch_page(report_links[report_name])
+        matches = {
+            name: page
+            for name, page in report_links.items()
+            if search.lower() in name.lower()
+        }
+
+        if matches:
+            for name, page in matches.items():
+                sidebar_nav_button(f"Open {name}", page)
         else:
             st.caption("No matching reports found.")
 
@@ -153,18 +144,13 @@ with st.sidebar:
 
     st.markdown("### Navigation")
 
-    if st.button("🏠 Home", use_container_width=True):
-        st.switch_page("pages/home.py")
+    sidebar_nav_button(":material/home: Home", "pages/home.py")
+    sidebar_nav_button(":material/shopping_cart: Major Vendor Order", "pages/MVO.py")
+    sidebar_nav_button(":material/shopping_basket", "pages/SVO.py")
 
-    if st.button("🛒 Major Vendor Order", use_container_width=True):
-        st.switch_page("pages/MVO.py")
 
-    if st.button("🧺 Small Vendor Order", use_container_width=True):
-        st.switch_page("pages/SVO.py")
-
-# Hide default Streamlit navigation
 pg = st.navigation(
-    [home, mvo, svo],
+    list(pages.values()),
     position="hidden"
 )
 
