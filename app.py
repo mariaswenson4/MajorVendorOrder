@@ -7,8 +7,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-
 # Pages
 home = st.Page(
     "pages/home.py",
@@ -20,16 +18,17 @@ home = st.Page(
 mvo = st.Page(
     "pages/MVO.py",
     title="Major Vendor Order",
-    icon="📦"
+    icon="🛒"
 )
 
 svo = st.Page(
     "pages/SVO.py",
     title="Small Vendor Order",
-    icon="📦"
+    icon="🧾"
 )
 
 
+# Sidebar styling
 # Sidebar styling
 st.markdown(
     """
@@ -39,27 +38,26 @@ section[data-testid="stSidebar"] {
     border-right: 1px solid #D7C8A4;
 }
 
-section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 {
     color: #1D5A3E;
 }
 
-section[data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] p {
-    color: #5C7A58;
+section[data-testid="stSidebar"] input {
+    border-color: #D7C8A4;
 }
 </style>
 """,
     unsafe_allow_html=True
 )
 
-
-# Optional searchable shortcut area above navigation
-st.sidebar.markdown("## Reports")
+# Search shortcut
+st.sidebar.markdown("### 🔎 Find a Report")
 
 search = st.sidebar.text_input(
-    "Search reports",
-    placeholder="Search reports..."
+    "Search",
+    placeholder="Search reports...",
+    label_visibility="collapsed"
 )
 
 report_links = {
@@ -67,27 +65,29 @@ report_links = {
     "Small Vendor Order": "pages/SVO.py",
 }
 
-filtered_reports = [
-    name for name in report_links
-    if search.lower() in name.lower()
-]
-
 if search:
-    st.sidebar.markdown("### Search Results")
+    filtered_reports = [
+        name for name in report_links
+        if search.lower() in name.lower()
+    ]
+
+    st.sidebar.markdown("**Results**")
 
     if filtered_reports:
         for report_name in filtered_reports:
-            if st.sidebar.button(report_name, use_container_width=True):
+            if st.sidebar.button(f"Open {report_name}", use_container_width=True):
                 st.switch_page(report_links[report_name])
     else:
         st.sidebar.caption("No matching reports found.")
+
+st.sidebar.divider()
 
 
 # Main built-in sidebar navigation
 pg = st.navigation(
     {
-        "Home": [home],
-        "Ordering Reports": [mvo, svo],
+        "🏠 Home": [home],
+        "📦 Ordering Reports": [mvo, svo],
     }
 )
 
