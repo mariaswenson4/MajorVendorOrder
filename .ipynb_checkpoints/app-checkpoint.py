@@ -1,5 +1,6 @@
 import streamlit as st
 
+
 st.set_page_config(
     page_title="Tabby & Jack's Analytics",
     page_icon="images/logo.png",
@@ -7,6 +8,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+
+# Pages
 home = st.Page(
     "pages/home.py",
     title="Home",
@@ -26,10 +29,65 @@ svo = st.Page(
     icon="📦"
 )
 
+
+# Sidebar styling
+st.markdown(
+    """
+<style>
+section[data-testid="stSidebar"] {
+    background-color: #FFF9EF;
+    border-right: 1px solid #D7C8A4;
+}
+
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+    color: #1D5A3E;
+}
+
+section[data-testid="stSidebar"] div[data-testid="stMarkdownContainer"] p {
+    color: #5C7A58;
+}
+</style>
+""",
+    unsafe_allow_html=True
+)
+
+
+# Optional searchable shortcut area above navigation
+st.sidebar.markdown("## Reports")
+
+search = st.sidebar.text_input(
+    "Search reports",
+    placeholder="Search reports..."
+)
+
+report_links = {
+    "Major Vendor Order": "pages/MVO.py",
+    "Small Vendor Order": "pages/SVO.py",
+}
+
+filtered_reports = [
+    name for name in report_links
+    if search.lower() in name.lower()
+]
+
+if search:
+    st.sidebar.markdown("### Search Results")
+
+    if filtered_reports:
+        for report_name in filtered_reports:
+            if st.sidebar.button(report_name, use_container_width=True):
+                st.switch_page(report_links[report_name])
+    else:
+        st.sidebar.caption("No matching reports found.")
+
+
+# Main built-in sidebar navigation
 pg = st.navigation(
     {
         "Home": [home],
-        "Reports": [mvo, svo],
+        "Ordering Reports": [mvo, svo],
     }
 )
 
