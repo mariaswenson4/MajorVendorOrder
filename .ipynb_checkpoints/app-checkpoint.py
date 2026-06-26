@@ -43,15 +43,23 @@ section[data-testid="stSidebar"] h3 {
 section[data-testid="stSidebar"] input {
     border-color: #D7C8A4;
 }
+[data-testid="stToolbar"] {
+    display: none;
+}
+
+[data-testid="stDecoration"] {
+    display: none;
+}
 </style>
 """,
     unsafe_allow_html=True
 )
 
-st.sidebar.markdown("### Find a Report")
+st.sidebar.markdown("<div style='height:220px;'></div>", unsafe_allow_html=True)
 
+st.sidebar.markdown("### Find a Report")
 search = st.sidebar.text_input(
-    ":material/search: Search",
+    "Search",
     placeholder="Search reports...",
     label_visibility="collapsed"
 )
