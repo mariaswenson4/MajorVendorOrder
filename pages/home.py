@@ -8,7 +8,12 @@ def image_to_base64(image_path):
 
 
 logo = image_to_base64("images/logo.png")
-ordering = image_to_base64("images/ordering.png")
+icons = {
+    "ordering": image_to_base64("images/ordering.png"),
+    #"transfer": image_to_base64("images/transfer.png"),
+    #"pricing": image_to_base64("images/pricing.png"),
+    #"inventory": image_to_base64("images/inventory.png"),
+}
 
 
 tools = [
@@ -17,7 +22,7 @@ tools = [
         "description": "Upload a 4-week Lightspeed report and generate a major vendor order.",
         "status": "Available",
         "category": "Ordering Tools",
-        "icon": "images/ordering.png",
+        "icon": icons["ordering"],
         "page": "pages/MVO.py",
         "enabled": True,
     },
@@ -400,9 +405,9 @@ def render_tool_card(tool, key):
         f"""
 <div class="app-card">
     <div class="app-card-body">
-        <div class="app-card-top">
-            <div class="app-icon-wrap">{tool["icon"]}</div>
-            <div>
+        <div class="app-icon-wrap">
+            <img src="data:image/png;base64,{tool['icon']}" width="50">
+        </div>
                 <h3>{tool["title"]}</h3>
                 <div class="status-pill {status_class(tool["status"])}">{tool["status"]}</div>
             </div>
