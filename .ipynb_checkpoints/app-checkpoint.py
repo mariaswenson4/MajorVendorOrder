@@ -30,13 +30,13 @@ st.markdown(
     """
 <style>
 section[data-testid="stSidebar"] {
-    background-color: #F3A653;
+    background-color: #5C8067;
     border-right: 1px solid #F3A653;
 }
 
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 {
-    color: #F3A653;
+    color: #5C8067;
 }
 
 section[data-testid="stSidebar"] input {
@@ -90,7 +90,7 @@ st.sidebar.divider()
 
 pg = st.navigation(
     {
-        "Navigation": [
+        [
             home,
             mvo,
             svo,
