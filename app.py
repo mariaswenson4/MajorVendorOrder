@@ -24,6 +24,21 @@ pages = {
         title="Small Vendor Order",
         icon=":material/shopping_basket:"
     ),
+    "Dusty Report Transfer": st.Page(
+        "pages/dusty.py",
+        title="Dusty Report Transfer",
+        icon=":material/move_item:"
+    ),
+    "Sales by Brand": st.Page(
+        "pages/brandsale.py",
+        title="Sales by Brand",
+        icon=":material/filter_list:"
+    ),
+    "Helpful Links": st.Page(
+        "pages/links.py",
+        title="Helpful Links",
+        icon=":material/link:"
+    ),
 }
 
 report_links = {
