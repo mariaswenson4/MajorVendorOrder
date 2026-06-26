@@ -55,7 +55,7 @@ tools = [
     },
     {
         "title": "Vendor Contact Sheet",
-        "description": "Link to google sheet containing information about how to contact vendors/reps.",
+        "description": "Link to Google Sheet containing information about how to contact vendors/reps.",
         "status": "Coming Soon",
         "category": "Office Hour Tools",
         "icon": icons["brand"],
@@ -63,14 +63,14 @@ tools = [
         "enabled": False,
     },
     {
-        "title": "Office Hour Tacker",
-        "description": "Exclusively for work from home employee's to track their working office hours.",
+        "title": "Office Hour Tracker",
+        "description": "Exclusively for work-from-home employees to track their working office hours.",
         "status": "Coming Soon",
         "category": "Office Hour Tools",
         "icon": icons["brand"],
         "page": None,
         "enabled": False,
-    }
+    },
 ]
 
 
@@ -286,59 +286,6 @@ div[data-testid="stButton"] {
     font-weight: 850;
 }
 
-.quick-start {
-    background-color: #FFF9EF;
-    border: 1px solid #D7C8A4;
-    border-radius: 22px;
-    padding: 24px 28px;
-    margin-top: 34px;
-    box-shadow: 0px 5px 16px rgba(47,55,45,.06);
-}
-
-.quick-start h3 {
-    color: #1D5A3E;
-    font-size: 24px;
-    font-weight: 850;
-    margin: 0 0 14px 0;
-}
-
-.steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-}
-
-.step {
-    background-color: #FFFDF8;
-    border: 1px solid #E3D6B8;
-    border-radius: 18px;
-    padding: 18px;
-}
-
-.step-number {
-    background-color: #1D5A3E;
-    color: white;
-    width: 34px;
-    height: 34px;
-    border-radius: 999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 850;
-    margin-bottom: 10px;
-}
-
-.step-title {
-    color: #1D5A3E;
-    font-weight: 850;
-    margin-bottom: 4px;
-}
-
-.step-text {
-    color: #5C7A58;
-    font-size: 14px;
-}
-
 .footer-note {
     text-align: center;
     color: #7B776E;
@@ -352,10 +299,6 @@ div[data-testid="stButton"] {
         text-align: center;
     }
 
-    .steps {
-        grid-template-columns: 1fr;
-    }
-
     .banner-title h1 {
         font-size: 34px;
     }
@@ -366,6 +309,45 @@ div[data-testid="stButton"] {
 )
 
 
+# SIDEBAR NAVIGATION + SEARCH
+
+st.sidebar.markdown(
+    f"""
+    <div style="text-align:center; margin-bottom:18px;">
+        <img src="data:image/png;base64,{logo}" width="80">
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.sidebar.markdown("## Reports")
+
+search = st.sidebar.text_input(
+    "Search reports",
+    placeholder="Search tools..."
+)
+
+available_tools = [
+    tool for tool in tools
+    if search.lower() in tool["title"].lower()
+    or search.lower() in tool["description"].lower()
+    or search.lower() in tool["category"].lower()
+]
+
+for tool in available_tools:
+    if tool["enabled"]:
+        if st.sidebar.button(tool["title"], use_container_width=True):
+            st.switch_page(tool["page"])
+    else:
+        st.sidebar.button(
+            f"{tool['title']} · Coming Soon",
+            disabled=True,
+            use_container_width=True
+        )
+
+
+# MAIN PAGE
+
 st.markdown(
     f"""
 <div class="app-banner">
@@ -374,7 +356,7 @@ st.markdown(
     </div>
     <div class="banner-title">
         <h1>Tabby & Jack's Analytics Hub</h1>
-        <p>Provides ordering tools, support daily operations, and assists with other functions of our team.</p>
+        <p>Provides ordering tools, supports daily operations, and assists with other functions of our team.</p>
     </div>
 </div>
 """,
