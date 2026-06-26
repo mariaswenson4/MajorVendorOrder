@@ -195,7 +195,7 @@ with st.sidebar:
     sidebar_nav_button(":material/shopping_basket: Small Vendor Order", "pages/SVO.py")
     sidebar_nav_button(":material/move_item: Dusty Report Transfer", "pages/dusty.py")
     sidebar_nav_button(":material/filter_list: Sales by Brand", "pages/brandsale.py")
-    sidebar_nav_button(":material/link: QUICK LINKS", "pages/links.py")
+    sidebar_nav_button(":material/link: Helpful Links", "pages/links.py")
 
 
 
