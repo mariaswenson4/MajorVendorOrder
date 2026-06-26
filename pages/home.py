@@ -400,14 +400,25 @@ def status_class(status):
     return "status-planned"
 
 
+def render_icon(tool):
+    icon = tool["icon"]
+
+    if icon.startswith("data:image") or len(icon) > 50:
+        return f'<img src="data:image/png;base64,{icon}" width="50">'
+
+    return icon
+
+
 def render_tool_card(tool, key):
     st.markdown(
         f"""
 <div class="app-card">
     <div class="app-card-body">
-        <div class="app-icon-wrap">
-            <img src="data:image/png;base64,{tool['icon']}" width="50">
-        </div>
+        <div class="app-card-top">
+            <div class="app-icon-wrap">
+                {render_icon(tool)}
+            </div>
+            <div>
                 <h3>{tool["title"]}</h3>
                 <div class="status-pill {status_class(tool["status"])}">{tool["status"]}</div>
             </div>
