@@ -32,7 +32,7 @@ tools = [
     },
     {
         "title": "Dusty Report Transfer",
-        "description": "Transfer Dusty reports into the correct folder structure for daily use.",
+        "description": "Transfer Dusty inventory to the stores that need it most.",
         "status": "Coming Soon",
         "category": "Operations",
         "icon": "📤",
@@ -40,8 +40,8 @@ tools = [
         "enabled": False,
     },
     {
-        "title": "Inventory Transfer",
-        "description": "Prepare inventory transfer files and store movement reports.",
+        "title": "Sales by Brand",
+        "description": "Generate sales report based on brand and time frame.",
         "status": "Planned",
         "category": "Operations",
         "icon": "🔄",
@@ -368,8 +368,8 @@ st.markdown(
         <img src="data:image/png;base64,{logo}" width="100">
     </div>
     <div class="banner-title">
-        <h1>Tabby & Jack's Operations Hub</h1>
-        <p>Internal reports, ordering tools, pricing workflows, and daily operations support.</p>
+        <h1>Tabby & Jack's Analytics Hub</h1>
+        <p>Provides ordering tools, support daily operations, and assists with other functions of our team.</p>
     </div>
 </div>
 """,
@@ -381,7 +381,7 @@ st.markdown(
     """
 <div class="section-kicker">Daily Tools</div>
 <div class="section-title">Reporting Dashboard</div>
-<div class="section-subtitle">Choose a workflow below to get started.</div>
+<div class="section-subtitle">Choose a tool below to get started!</div>
 """,
     unsafe_allow_html=True,
 )
@@ -451,29 +451,8 @@ for category in categories:
 
 st.markdown(
     """
-<div class="quick-start">
-    <h3>Quick Start</h3>
-    <div class="steps">
-        <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-title">Pull your report</div>
-            <div class="step-text">Export the needed report from Lightspeed, Dusty, or the correct system.</div>
-        </div>
-        <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-title">Upload the file</div>
-            <div class="step-text">Open the correct tool and upload the CSV or spreadsheet.</div>
-        </div>
-        <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-title">Download output</div>
-            <div class="step-text">Use the finished file for ordering, pricing, transfers, or reporting.</div>
-        </div>
-    </div>
-</div>
-
 <div class="footer-note">
-    Tabby & Jack's Operations Hub · Version 1.0 · Built for internal use
+    Tabby & Jack's Analytics Hub · Version 1.0 · Built by Maria Swenson for internal use
 </div>
 """,
     unsafe_allow_html=True,
