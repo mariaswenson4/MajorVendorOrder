@@ -16,8 +16,8 @@ tools = [
         "title": "Major Vendor Order",
         "description": "Upload a 4-week Lightspeed report and generate a major vendor order.",
         "status": "Available",
-        "category": "Reports",
-        "icon": "📦",
+        "category": "Ordering Tools",
+        "icon": "images/ordering.png",
         "page": "pages/MVO.py",
         "enabled": True,
     },
@@ -25,7 +25,7 @@ tools = [
         "title": "Small Vendor Order",
         "description": "Upload a 90-day Lightspeed report and generate a small vendor report.",
         "status": "Coming Soon",
-        "category": "Reports",
+        "category": "Ordering Tools",
         "icon": "📊",
         "page": None,
         "enabled": False,
@@ -34,7 +34,7 @@ tools = [
         "title": "Dusty Report Transfer",
         "description": "Transfer Dusty inventory to the stores that need it most.",
         "status": "Coming Soon",
-        "category": "Operations",
+        "category": "Inventory Tools",
         "icon": "📤",
         "page": None,
         "enabled": False,
@@ -43,7 +43,7 @@ tools = [
         "title": "Sales by Brand",
         "description": "Generate sales report based on brand and time frame.",
         "status": "Planned",
-        "category": "Operations",
+        "category": "Inventory Tools",
         "icon": "🔄",
         "page": None,
         "enabled": False,
@@ -52,7 +52,7 @@ tools = [
         "title": "Markdown Generator",
         "description": "Create expiration markdown lists and pricing adjustments.",
         "status": "Planned",
-        "category": "Pricing",
+        "category": "TBD",
         "icon": "🏷️",
         "page": None,
         "enabled": False,
@@ -61,7 +61,7 @@ tools = [
         "title": "MAP Audit",
         "description": "Compare item pricing against MAP files and vendor pricing rules.",
         "status": "Planned",
-        "category": "Pricing",
+        "category": "TBD",
         "icon": "💲",
         "page": None,
         "enabled": False,
@@ -426,7 +426,7 @@ def render_tool_card(tool, key):
         )
 
 
-categories = ["Reports", "Operations", "Pricing"]
+categories = ["Ordering Tools", "Inventory Tools", "TBD"]
 
 for category in categories:
     category_tools = [tool for tool in tools if tool["category"] == category]
