@@ -283,26 +283,65 @@ if uploaded_file:
 
         output_df = df[df["Order Qty"] > 0].copy()
         output_df = output_df.sort_values("Order Qty", ascending=False)
-
         st.markdown("""
-        <div class="section-label">Step 3</div>
-        <div class="section-title">Order Results</div>
-        <div class="section-subtitle">Review the recommended order quantities and download your CSV.</div>
-        """, unsafe_allow_html=True)
+<div class="section-label">Step 3</div>
+<div class="section-title">Order Results</div>
+<div class="section-subtitle">Review the recommended order quantities and download your CSV.</div>
+""", unsafe_allow_html=True)
 
-        col1, col2 = st.columns([1, 3])
+st.markdown("""
+<h3 style="
+    color:#1D5A3E;
+    font-size:24px;
+    font-weight:800;
+    margin-bottom:10px;
+">
+    Recommended Order Preview
+</h3>
+""", unsafe_allow_html=True)
 
-        with col1:
-            st.metric("Items to Order", len(output_df))
+st.dataframe(output_df.head(50), use_container_width=True)
 
-        st.markdown("""
-        <div class="section-title" style="font-size:24px; margin-top:18px;">
-                Recommended Order Preview
+full_csv = output_df.to_csv(index=False)
+
+upc_order_df = output_df[["UPC", "Order Qty"]].copy()
+upc_order_csv = upc_order_df.to_csv(index=False)
+
+button_col1, button_col2, metric_col, spacer_col = st.columns([1.4, 1.7, 1, 3])
+
+with button_col1:
+    st.download_button(
+        label="Download Full CSV",
+        data=full_csv,
+        file_name="major_vendor_order_output.csv",
+        mime="text/csv"
+    )
+
+with button_col2:
+    st.download_button(
+        label="Download UPC + Order Qty",
+        data=upc_order_csv,
+        file_name="upc_order_qty.csv",
+        mime="text/csv"
+    )
+
+with metric_col:
+    st.markdown(
+        f"""
+        <div style="
+            background-color:#FFF9EF;
+            border:1px solid #D7C8A4;
+            border-radius:14px;
+            padding:8px 12px;
+            text-align:center;
+            box-shadow:0px 3px 10px rgba(47,55,45,0.05);
+        ">
+            <div style="font-size:11px; color:#2F372D;">Items to Order</div>
+            <div style="font-size:22px; font-weight:700; color:#1D5A3E;">{len(output_df)}</div>
         </div>
-        """, unsafe_allow_html=True)
-        st.dataframe(output_df.head(50), use_container_width=True)
-
-        csv = output_df.to_csv(index=False)
+        """,
+        unsafe_allow_html=True
+    )
 
         st.download_button(
             label="Download Output CSV",
