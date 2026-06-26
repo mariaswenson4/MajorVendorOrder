@@ -46,34 +46,33 @@ section[data-testid="stSidebar"] input {
     border-color: #D7C8A4;
 }
 
-/* Hide Streamlit top bar */
+/* Keep header so sidebar button works, but make it invisible */
 header[data-testid="stHeader"] {
-    display: none;
+    background: transparent;
 }
 
-/* Hide Share, GitHub, edit, star, menu icons */
+/* Hide top-right Streamlit buttons */
 [data-testid="stToolbar"] {
     display: none;
 }
 
-/* Hide orange/red decoration line */
+/* Hide decoration line */
 [data-testid="stDecoration"] {
     display: none;
 }
 
-/* Hide old Streamlit menu */
+/* Hide menu/footer */
 #MainMenu {
     visibility: hidden;
 }
 
-/* Hide footer */
 footer {
     visibility: hidden;
 }
 
-/* Pull content up after hiding header */
+/* Optional: reduce top spacing */
 .block-container {
-    padding-top: 1rem;
+    padding-top: 2rem;
 }
 </style>
 """,
