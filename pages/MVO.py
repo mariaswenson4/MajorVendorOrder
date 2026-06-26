@@ -3,15 +3,18 @@ import pandas as pd
 import numpy as np
 import base64
 
+
 def image_to_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()
+
 
 st.set_page_config(
     page_title="Major Vendor Order",
     page_icon="images/logo.png",
     layout="wide"
 )
+
 
 st.markdown("""
 <style>
@@ -80,7 +83,6 @@ footer {
     font-size: 16px;
     margin-bottom: 20px;
 }
-
 
 .mini-step {
     background-color: #FDF7EA;
@@ -154,14 +156,6 @@ section[data-testid="stFileUploader"] {
     box-shadow: 0px 4px 14px rgba(47,55,45,0.07);
 }
 
-div[data-testid="stMetric"] {
-    background-color: #FFF9EF;
-    border: 1px solid #D7C8A4;
-    padding: 18px;
-    border-radius: 18px;
-    box-shadow: 0px 4px 14px rgba(47,55,45,0.06);
-}
-
 hr {
     border: none;
     border-top: 1px solid #D7C8A4;
@@ -174,11 +168,13 @@ h2, h3 {
 </style>
 """, unsafe_allow_html=True)
 
+
 logo_base64 = image_to_base64("images/logo.png")
+
 
 st.markdown("""
 <div class="hero">
-    <h1> Major Vendor Order Report</h1>
+    <h1>Major Vendor Order Report</h1>
     <p>Generate a vendor order from a Lightspeed 4-week item sales report.</p>
 </div>
 """, unsafe_allow_html=True)
@@ -200,6 +196,7 @@ steps = [
     ("images/export.png", "Export CSV", "Press EXPORT and save the CSV.")
 ]
 
+
 def render_mini_step(number, image_path, title, desc):
     image_base64 = image_to_base64(image_path)
 
@@ -219,7 +216,9 @@ for i, step in enumerate(steps[:3]):
     with row1[i]:
         render_mini_step(i + 1, *step)
 
+
 st.markdown("<div style='height:12px;'></div>", unsafe_allow_html=True)
+
 
 row2 = st.columns(3)
 for i, step in enumerate(steps[3:]):
@@ -227,8 +226,8 @@ for i, step in enumerate(steps[3:]):
         render_mini_step(i + 4, *step)
 
 
-
 st.divider()
+
 
 st.markdown("""
 <div class="section-label">Step 2</div>
@@ -236,13 +235,16 @@ st.markdown("""
 <div class="section-subtitle">Upload the 4-week CSV report exported from Lightspeed.</div>
 """, unsafe_allow_html=True)
 
+
 uploaded_file = st.file_uploader(
     "Upload 4-week Lightspeed CSV",
     type=["csv"],
     label_visibility="collapsed"
 )
 
+
 st.caption("Use the CSV exported directly from Lightspeed. Do not edit the column names before uploading.")
+
 
 st.divider()
 
@@ -257,6 +259,7 @@ if uploaded_file:
         st.error(
             f"Your CSV is missing these required columns: {', '.join(missing_columns)}"
         )
+
     else:
         df["Order Qty"] = np.where(
             (df["Stock"] <= 0) & (df["Sold"] == 1),
@@ -283,72 +286,67 @@ if uploaded_file:
 
         output_df = df[df["Order Qty"] > 0].copy()
         output_df = output_df.sort_values("Order Qty", ascending=False)
+
         st.markdown("""
-<div class="section-label">Step 3</div>
-<div class="section-title">Order Results</div>
-<div class="section-subtitle">Review the recommended order quantities and download your CSV.</div>
-""", unsafe_allow_html=True)
+        <div class="section-label">Step 3</div>
+        <div class="section-title">Order Results</div>
+        <div class="section-subtitle">Review the recommended order quantities and download your CSV.</div>
+        """, unsafe_allow_html=True)
 
-st.markdown("""
-<h3 style="
-    color:#1D5A3E;
-    font-size:24px;
-    font-weight:800;
-    margin-bottom:10px;
-">
-    Recommended Order Preview
-</h3>
-""", unsafe_allow_html=True)
-
-st.dataframe(output_df.head(50), use_container_width=True)
-
-full_csv = output_df.to_csv(index=False)
-
-upc_order_df = output_df[["UPC", "Order Qty"]].copy()
-upc_order_csv = upc_order_df.to_csv(index=False)
-
-button_col1, button_col2, metric_col, spacer_col = st.columns([1.4, 1.7, 1, 3])
-
-with button_col1:
-    st.download_button(
-        label="Download Full CSV",
-        data=full_csv,
-        file_name="major_vendor_order_output.csv",
-        mime="text/csv"
-    )
-
-with button_col2:
-    st.download_button(
-        label="Download UPC + Order Qty",
-        data=upc_order_csv,
-        file_name="upc_order_qty.csv",
-        mime="text/csv"
-    )
-
-with metric_col:
-    st.markdown(
-        f"""
-        <div style="
-            background-color:#FFF9EF;
-            border:1px solid #D7C8A4;
-            border-radius:14px;
-            padding:8px 12px;
-            text-align:center;
-            box-shadow:0px 3px 10px rgba(47,55,45,0.05);
+        st.markdown("""
+        <h3 style="
+            color:#1D5A3E;
+            font-size:24px;
+            font-weight:800;
+            margin-bottom:10px;
         ">
-            <div style="font-size:11px; color:#2F372D;">Items to Order</div>
-            <div style="font-size:22px; font-weight:700; color:#1D5A3E;">{len(output_df)}</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+            Recommended Order Preview
+        </h3>
+        """, unsafe_allow_html=True)
 
-        st.download_button(
-            label="Download Output CSV",
-            data=csv,
-            file_name="major_vendor_order_output.csv",
-            mime="text/csv"
-        )
+        st.dataframe(output_df.head(50), use_container_width=True)
+
+        full_csv = output_df.to_csv(index=False)
+
+        upc_order_df = output_df[["UPC", "Order Qty"]].copy()
+        upc_order_csv = upc_order_df.to_csv(index=False)
+
+        button_col1, button_col2, metric_col, spacer_col = st.columns([1.4, 1.9, 1, 3])
+
+        with button_col1:
+            st.download_button(
+                label="Download Full CSV",
+                data=full_csv,
+                file_name="major_vendor_order_output.csv",
+                mime="text/csv"
+            )
+
+        with button_col2:
+            st.download_button(
+                label="Download UPC + Order Qty",
+                data=upc_order_csv,
+                file_name="upc_order_qty.csv",
+                mime="text/csv"
+            )
+
+        with metric_col:
+            st.markdown(
+                f"""
+                <div style="
+                    background-color:#FFF9EF;
+                    border:1px solid #D7C8A4;
+                    border-radius:14px;
+                    padding:7px 10px;
+                    text-align:center;
+                    box-shadow:0px 3px 10px rgba(47,55,45,0.05);
+                    max-width:115px;
+                ">
+                    <div style="font-size:11px; color:#2F372D;">Items to Order</div>
+                    <div style="font-size:22px; font-weight:700; color:#1D5A3E;">{len(output_df)}</div>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
 else:
     st.info("Upload a CSV report to generate your order recommendation.")
