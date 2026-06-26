@@ -52,7 +52,7 @@ section[data-testid="stSidebar"] input {
 )
 
 # Search shortcut
-st.sidebar.markdown("### 🔎 Find a Report")
+st.sidebar.markdown("### Find a Report")
 
 search = st.sidebar.text_input(
     "Search",
@@ -86,8 +86,8 @@ st.sidebar.divider()
 # Main built-in sidebar navigation
 pg = st.navigation(
     {
-        "🏠 Home": [home],
-        "📦 Ordering Reports": [mvo, svo],
+        " Home": [home],
+        " Ordering Reports": [mvo, svo],
     }
 )
 
