@@ -13,7 +13,7 @@ pages = {
         title="Home",
         icon=":material/home:",
         default=True
-    ),=
+    ),
     "Major Vendor Order": st.Page(
         "pages/MVO.py",
         title="Major Vendor Order",
@@ -30,31 +30,6 @@ report_links = {
     "Major Vendor Order": "pages/MVO.py",
     "Small Vendor Order": "pages/SVO.py",
 }
-
-st.markdown(
-    """
-    <div style="
-        background: rgba(255,249,239,.10);
-        border: 1px solid rgba(255,249,239,.22);
-        border-radius: 18px;
-        padding: 18px;
-        text-align: center;
-        margin-bottom: 1.25rem;
-    ">
-    """,
-    unsafe_allow_html=True
-)
-
-st.image("images/logo.png", width=110)
-
-st.markdown(
-    """
-        <div style="font-size:1.1rem; font-weight:800;">Tabby & Jack's</div>
-        <div style="font-size:.85rem; opacity:.85;">Analytics Hub</div>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
 
 st.markdown(
     """
@@ -86,12 +61,45 @@ section[data-testid="stSidebar"] hr {
 section[data-testid="stSidebar"] div[data-testid="stButton"] button {
     background-color: #C98335 !important;
     color: #FFF9EF !important;
+    border: 1px solid #C98335 !important;
+    border-radius: 12px !important;
+    height: 42px !important;
+    font-weight: 800 !important;
 }
 
 section[data-testid="stSidebar"] div[data-testid="stButton"] button:hover {
     background-color: #F3A653 !important;
     color: #1D5A3E !important;
+    border-color: #F3A653 !important;
 }
+
+.sidebar-card {
+    background: rgba(255,249,239,.10);
+    border: 1px solid rgba(255,249,239,.22);
+    border-radius: 18px;
+    padding: 18px;
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-top: .5rem;
+}
+
+.sidebar-subtitle {
+    font-size: .85rem;
+    opacity: .85;
+}
+
+.sidebar-footer {
+    position: fixed;
+    bottom: 24px;
+    font-size: .75rem;
+    opacity: .7;
+}
+
 header[data-testid="stHeader"] {
     background: transparent;
 }
@@ -113,21 +121,6 @@ footer {
     unsafe_allow_html=True
 )
 
-st.markdown(
-    """
-    <div style="
-        position: fixed;
-        bottom: 24px;
-        font-size: .75rem;
-        opacity: .7;
-    ">
-        Internal Use Only<br>
-        Version 1.0
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
 
 def sidebar_nav_button(label, page):
     if st.button(label, use_container_width=True):
@@ -135,15 +128,12 @@ def sidebar_nav_button(label, page):
 
 
 with st.sidebar:
-    st.image("images/logo.png", width=115)
-
     st.markdown(
         """
-        <div style="font-size:1.15rem; font-weight:800; line-height:1.2;">
-            Tabby & Jack's
-        </div>
-        <div style="font-size:.85rem; opacity:.85; margin-bottom:1.25rem;">
-            Analytics Hub
+        <div class="sidebar-card">
+            <img src="images/logo.png" width="110">
+            <div class="sidebar-title">Tabby & Jack's</div>
+            <div class="sidebar-subtitle">Analytics Hub</div>
         </div>
         """,
         unsafe_allow_html=True
@@ -151,7 +141,7 @@ with st.sidebar:
 
     st.divider()
 
-    st.markdown("### :material/search: Find a Report")
+    st.markdown("### 🔎 Find a Report")
 
     search = st.text_input(
         "Search",
@@ -178,9 +168,19 @@ with st.sidebar:
 
     st.markdown("### Navigation")
 
-    sidebar_nav_button(":material/home: Home", "pages/home.py")
-    sidebar_nav_button(":material/shopping_cart: Major Vendor Order", "pages/MVO.py")
-    sidebar_nav_button(":material/shopping_basket: Small Vendor Order", "pages/SVO.py")
+    sidebar_nav_button("🏠 Home", "pages/home.py")
+    sidebar_nav_button("🛒 Major Vendor Order", "pages/MVO.py")
+    sidebar_nav_button("🧺 Small Vendor Order", "pages/SVO.py")
+
+    st.markdown(
+        """
+        <div class="sidebar-footer">
+            Internal Use Only<br>
+            Version 1.0
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 
 pg = st.navigation(
