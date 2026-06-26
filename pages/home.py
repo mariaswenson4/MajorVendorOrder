@@ -2,12 +2,21 @@ import streamlit as st
 import base64
 
 
+st.set_page_config(
+    page_title="Tabby & Jack's Analytics Hub",
+    page_icon="images/logo.png",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+
 def image_to_base64(image_path):
     with open(image_path, "rb") as image_file:
         return base64.b64encode(image_file.read()).decode()
 
 
 logo = image_to_base64("images/logo.png")
+
 icons = {
     "ordering": image_to_base64("images/ordering.png"),
     "transfer": image_to_base64("images/item_report.png"),
@@ -210,7 +219,6 @@ section[data-testid="stSidebar"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 34px;
 }
 
 .app-card h3 {
@@ -292,17 +300,6 @@ div[data-testid="stButton"] {
     font-size: 13px;
     margin-top: 34px;
 }
-
-@media (max-width: 900px) {
-    .app-banner {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .banner-title h1 {
-        font-size: 34px;
-    }
-}
 </style>
 """,
     unsafe_allow_html=True,
@@ -363,7 +360,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-
 st.markdown(
     """
 <div class="section-kicker">Daily Tools</div>
@@ -383,12 +379,7 @@ def status_class(status):
 
 
 def render_icon(tool):
-    icon = tool["icon"]
-
-    if icon.startswith("data:image") or len(icon) > 50:
-        return f'<img src="data:image/png;base64,{icon}" width="50">'
-
-    return icon
+    return f'<img src="data:image/png;base64,{tool["icon"]}" width="50">'
 
 
 def render_tool_card(tool, key):
