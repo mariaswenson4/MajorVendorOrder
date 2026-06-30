@@ -306,9 +306,9 @@ st.divider()
 
 report_start = datetime.today() - timedelta(days=56)
 
-st.markdown("""
+st.markdown("""f
 <div class="date-box">
-    <div class="date-icon">:material:calendar_month:</div>
+    <div class="date-icon">:material/calendar_month:</div>
     <div>
         <div class="date-title">Report Date Range</div>
         <div class="date-text">
