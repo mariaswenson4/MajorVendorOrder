@@ -190,6 +190,36 @@ hr {
     margin: 2rem 0;
 }
 
+/* DATE INFO BOX */
+.date-box {
+    background-color: #EFE3C4;
+    border: 1px solid #D7C8A4;
+    border-radius: 18px;
+    padding: 18px 22px;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.date-icon {
+    font-size: 30px;
+}
+
+.date-title {
+    color: #1D5A3E;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.date-text {
+    color: #5C7A58;
+    font-size: 16px;
+    margin: 4px 0 0 0;
+}
+
 /* SETS HEADERS TO GREEN */
 h2, h3 {
     color: #1D5A3E;
@@ -209,7 +239,7 @@ logo = image_to_base64("images/logo.png")
 st.markdown("""
 <div class="hero">
     <h1>Major Vendor Order Report</h1>
-    <p>Generate a vendor order from a Lightspeed 4-week item sales report.</p>
+    <p>Generate a vendor order from a Lightspeed 56-day item sales report.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -231,7 +261,7 @@ steps = [ # Reads in the images for the step cards as well as set the titles for
     ("images/reports.png", "Reports", "Open REPORTS from the sidebar."),
     ("images/grouped_sales.png", "Grouped Sales", "Scroll to GROUPED SALES TOTAL."),
     ("images/item_report.png", "Item Report", "Select ITEM as the report type."),
-    ("images/calendar.png", "Date Filter", "Set DATE RANGE to last 4 weeks."),
+    ("images/calendar.png", "Date Filter", "Set DATE RANGE from 56 days ago till now."),
     ("images/vendor.png", "Vendor Filter", "Choose the desired VENDOR."),
     ("images/export.png", "Export CSV", "Press EXPORT and save the CSV.")
 ]
@@ -253,6 +283,7 @@ def render_instruction_card(number, image_path, title, desc):
     """, unsafe_allow_html=True)
 
 
+
 row1 = st.columns(3)
 for i, step in enumerate(steps[:3]):
     with row1[i]:
@@ -270,6 +301,26 @@ for i, step in enumerate(steps[3:]):
 
 st.divider()
 
+### Box for the date 56 days ago 
+
+report_start = datetime.today() - timedelta(days=56)
+
+st.markdown("""
+<div class="date-box">
+    <div class="date-icon">:material:calendar_month:</div>
+    <div>
+        <div class="date-title">Report Date Range</div>
+        <div class="date-text">
+            Report should begin on <strong>{report_start.strftime("%B %d, %Y")}</strong>
+            (56 days ago).
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+
+st.divider()
+
 
 # Written information for step 2 
 st.markdown("""
@@ -279,7 +330,7 @@ st.markdown("""
 
 
 uploaded_file = st.file_uploader( # Creates the file uploader button 
-    "Upload 4-week Lightspeed CSV",
+    "Upload 56-day Lightspeed CSV",
     type=["csv"],
     label_visibility="collapsed"
 )
