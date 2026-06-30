@@ -221,6 +221,13 @@ hr {
     margin: 4px 0 0 0;
 }
 
+.date-image {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
 /* SETS HEADERS TO GREEN */
 h2, h3 {
     color: #1D5A3E;
