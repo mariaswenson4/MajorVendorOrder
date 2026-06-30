@@ -192,40 +192,41 @@ hr {
 }
 
 /* DATE INFO BOX */
+/* DATE INFO BOX */
 .date-box {
     background-color: #EFE3C4;
     border: 1px solid #D7C8A4;
     border-radius: 18px;
-    padding: 18px 22px;
+
+    /* Makes the box shorter */
+    padding: 10px 18px;
+
     margin-top: 16px;
     margin-bottom: 24px;
+
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
 }
 
-.date-icon {
-    font-size: 30px;
+.date-image {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .date-title {
     color: #1D5A3E;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
-    margin: 0;
+    margin: 0 0 4px 0;
 }
 
 .date-text {
     color: #5C7A58;
-    font-size: 16px;
-    margin: 4px 0 0 0;
-}
-
-.date-image {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    flex-shrink: 0;
+    font-size: 15px;
+    margin: 0;
 }
 
 /* SETS HEADERS TO GREEN */
@@ -307,22 +308,25 @@ for i, step in enumerate(steps[3:]):
         render_instruction_card(i + 4, *step)
 
 
-st.divider()
-
 ### Box for the date 56 days ago 
 report_start = datetime.today() - timedelta(days=56)
+st.markdown(f"""
+<div class="date-box">
+    <img class="date-image"
+         src="data:image/png;base64,{calendar}">
 
-with st.container(border=True):
-    col1, col2 = st.columns([1, 12])
+    <div>
+        <div class="date-title">
+            Report Date Range
+        </div>
 
-    with col1:
-        st.image("images/calendar.png", width=40)
-
-    with col2:
-        st.markdown("### Report Date Range")
-        st.markdown(
-            f"Report should begin on **{report_start.strftime('%B %d, %Y')}** (56 days ago)."
-        )
+        <div class="date-text">
+            The date 56 days ago was
+            <strong>{report_start.strftime("%B %d, %Y")}</strong>.
+        </div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
 
 
 st.divider()
