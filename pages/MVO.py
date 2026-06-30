@@ -305,10 +305,12 @@ st.divider()
 ### Box for the date 56 days ago 
 
 report_start = datetime.today() - timedelta(days=56)
+calendar = image_to_base64("images/calendar.png")
 
 st.markdown(f"""
 <div class="date-box">
-    <div class="date-icon">:material/calendar_month:</div>
+    <img src="data:image/png;base64,{calendar}" width="40">
+
     <div>
         <div class="date-title">Report Date Range</div>
         <div class="date-text">
@@ -318,7 +320,6 @@ st.markdown(f"""
     </div>
 </div>
 """, unsafe_allow_html=True)
-
 
 st.divider()
 
