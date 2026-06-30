@@ -192,28 +192,14 @@ hr {
 }
 
 /* DATE INFO BOX */
-/* DATE INFO BOX */
+
 .date-box {
     background-color: #EFE3C4;
     border: 1px solid #D7C8A4;
     border-radius: 18px;
-
-    /* Makes the box shorter */
     padding: 10px 18px;
-
     margin-top: 16px;
     margin-bottom: 24px;
-
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.date-image {
-    width: 56px;
-    height: 56px;
-    object-fit: contain;
-    flex-shrink: 0;
 }
 
 .date-title {
@@ -310,24 +296,33 @@ for i, step in enumerate(steps[3:]):
 
 ### Box for the date 56 days ago 
 report_start = datetime.today() - timedelta(days=56)
-calendar = image_to_base64("images/calendar.png")
-st.markdown(f"""
-<div class="date-box">
-    <img class="date-image"
-         src="data:image/png;base64,{calendar}">
 
-    <div>
-        <div class="date-title">
-            Report Date Range
-        </div>
+st.markdown('<div class="date-box">', unsafe_allow_html=True)
 
-        <div class="date-text">
-            The date 56 days ago was
+col1, col2 = st.columns([1, 12], vertical_alignment="center")
+
+with col1:
+    st.image("images/calendar.png", width=56)
+
+with col2:
+    st.markdown(
+        """
+        <p class="date-title">Report Date Range</p>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        f"""
+        <p class="date-text">
+            Set the report start date to
             <strong>{report_start.strftime("%B %d, %Y")}</strong>.
-        </div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+        </p>
+        """,
+        unsafe_allow_html=True
+    )
+
+st.markdown("</div>", unsafe_allow_html=True)
 
 
 st.divider()
