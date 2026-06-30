@@ -323,10 +323,9 @@ if uploaded_file:
         )
 
 
-       # df["Order Qty"] = np.ceil(df["Order Qty"]) # Round up 
-        #df["Order Qty"] = np.maximum(0, df["Order Qty"]) # Ensures no negatives
-        # df["Order Qty"] = df["Order Qty"].astype(int) # Convert to nearest integer
-        df["Order Qty"] = np.maximum(0, df["Order Qty"])
+        df["Order Qty"] = np.ceil(df["Order Qty"]) # Round up 
+        df["Order Qty"] = np.maximum(0, df["Order Qty"]) # Ensures no negatives
+        df["Order Qty"] = df["Order Qty"].astype(int) # Convert to nearest integer
         output_df = df[df["Order Qty"] > 0].copy() # Only keep rows > 0 OQ 
         output_df = output_df.sort_values("Order Qty", ascending=False) # Sort largest to smallest
 
