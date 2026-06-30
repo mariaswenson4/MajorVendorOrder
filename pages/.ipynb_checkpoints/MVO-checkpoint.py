@@ -311,7 +311,7 @@ if uploaded_file:
                     # if(quantity_on_hand < 2, total_quantity / 2, ...)
                     df["Stock"] < 2,
                     df["Sold"] / 2,
-                    np.where
+                    np.where (
                         # if((total_quantity / 2) - quantity_on_hand < 0, 0, ...)
                         (df["Sold"] / 2) - df["Stock"] < 0,
                         0,
