@@ -9,8 +9,23 @@ def image_to_base64(image_path):
         return base64.b64encode(image_file.read()).decode()
 
 
+st.set_page_config(
+    page_title="Major Vendor Order",
+    page_icon="images/logo.png",
+    layout="wide"
+)
+
+
+##############################################################################
+#### Here sets all of the features to how this specific page appears. 
+###  
+### To see how the primary app appearances look, check out app.py
+##############################################################################
+
 st.markdown("""
 <style>
+
+/* HIDES STREAMLIT'S BUILT-IN ACCESSORIES */
 footer {
     visibility: hidden;
 }
@@ -20,17 +35,21 @@ footer {
     display: none;
 }
 
+
+/* MAIN APPEARANCE */
 .stApp {
-    background-color: #F6F1E5;
-    color: #2F372D;
+    background-color: #F6F1E5; /* Sets the main background color */
+    color: #2F372D; /* Sets the text color */
 }
 
+/* SETS THE SPACING AND WIDTH OF THE PAGE */
 .block-container {
     padding-top: 2rem;
     padding-bottom: 3rem;
     max-width: 1050px;
 }
 
+/* HEADER APPEARANCE */
 .hero {
     background-color: #1D5A3E;
     padding: 28px 28px;
@@ -39,6 +58,7 @@ footer {
     box-shadow: 0px 8px 22px rgba(29,90,62,.18);
 }
 
+/* TITLE APPEARANCE */
 .hero h1 {
     text-align: center;
     color: #FFF9EF;
@@ -47,6 +67,7 @@ footer {
     margin: 0;
 }
 
+/* SUBTITLE APPEARANCE */
 .hero p {
     text-align: center;
     color: rgba(255,249,239,0.88);
@@ -55,6 +76,7 @@ footer {
     margin-bottom: 0;
 }
 
+/* ORANGE STEP LABEL APPEARANCE */
 .section-label {
     color: #C97822;
     font-weight: 800;
@@ -64,6 +86,7 @@ footer {
     margin-bottom: 4px;
 }
 
+/* GREEN STEP HEADING APPEARANCE */
 .section-title {
     color: #1D5A3E;
     font-size: 31px;
@@ -71,12 +94,14 @@ footer {
     margin-bottom: 4px;
 }
 
+/* SUBTITLE WITHIN STEP APPEARANCE */
 .section-subtitle {
     color: #5C7A58;
     font-size: 16px;
     margin-bottom: 20px;
 }
 
+/* INSTRUCTION CARD'S APPEARANCE */
 .mini-step {
     background-color: #FDF7EA;
     border: 1px solid #D7C8A4;
@@ -87,6 +112,7 @@ footer {
     box-shadow: 0px 3px 10px rgba(47,55,45,0.04);
 }
 
+/* INSTRUCTION CARD NUMBER'S APPEARANCE */
 .mini-number {
     background-color: #C97822;
     color: white;
@@ -101,12 +127,14 @@ footer {
     margin-bottom: 6px;
 }
 
+/* INSTRUCTION CARD HEADING APPEARANCE */
 .mini-step h4 {
     color: #1D5A3E;
     font-size: 16px;
     margin: 5px 0 3px 0;
 }
 
+/* INSTRUCTION CARD DESCRIPTION */
 .mini-step p {
     color: #5C7A58;
     font-size: 12px;
@@ -114,6 +142,7 @@ footer {
     line-height: 1.35;
 }
 
+/* BUTTON APPEARANCE */
 .stButton button {
     background-color: #C97822;
     color: white;
@@ -123,11 +152,13 @@ footer {
     font-weight: 700;
 }
 
+/* BUTTON HOVER APPEARANCE */
 .stButton button:hover {
     background-color: #B4671C;
     color: white;
 }
 
+/* DOWNLOAD BUTTON APPEARANCE */
 .stDownloadButton button {
     background-color: #1D5A3E;
     color: white;
@@ -136,11 +167,13 @@ footer {
     font-weight: 700;
 }
 
+/* DOWNLOAD BUTTON HOVER APPEARANCE */
 .stDownloadButton button:hover {
     background-color: #15442F;
     color: white;
 }
 
+/* FILE UPLOAD APPEARANCE */
 section[data-testid="stFileUploader"] {
     background-color: #FFF9EF;
     padding: 22px;
@@ -149,22 +182,30 @@ section[data-testid="stFileUploader"] {
     box-shadow: 0px 4px 14px rgba(47,55,45,0.07);
 }
 
+
+/* DIVIDING LINE APPEARANCE */
 hr {
     border: none;
     border-top: 1px solid #D7C8A4;
     margin: 2rem 0;
 }
 
+/* SETS HEADERS TO GREEN */
 h2, h3 {
     color: #1D5A3E;
 }
 </style>
 """, unsafe_allow_html=True)
 
+##########################################################
+### END OF MAIN APPEARANCE CSS 
+##########################################################
 
-logo_base64 = image_to_base64("images/logo.png")
+
+logo = image_to_base64("images/logo.png")
 
 
+# Written information for the title 
 st.markdown("""
 <div class="hero">
     <h1>Major Vendor Order Report</h1>
@@ -173,14 +214,20 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+# Written information for step 1 (orange heading starts)  
 st.markdown("""
 <div class="section-label">Step 1</div>
 <div class="section-title">Export Report from Lightspeed</div>
 <div class="section-subtitle">Follow these steps to export the correct CSV report.</div>
 """, unsafe_allow_html=True)
 
+##############################################################################
+#### This is where the code for the instruction cards and appearance lives 
+###  other than the CSS 
+### 
+##############################################################################
 
-steps = [
+steps = [ # Reads in the images for the step cards as well as set the titles for them! 
     ("images/reports.png", "Reports", "Open REPORTS from the sidebar."),
     ("images/grouped_sales.png", "Grouped Sales", "Scroll to GROUPED SALES TOTAL."),
     ("images/item_report.png", "Item Report", "Select ITEM as the report type."),
@@ -190,14 +237,16 @@ steps = [
 ]
 
 
-def render_mini_step(number, image_path, title, desc):
-    image_base64 = image_to_base64(image_path)
+### This function reads in the image, title and description for each indivisual step. 
+def render_instruction_card(number, image_path, title, desc):
+    image = image_to_base64(image_path)
 
+    # CSS for the the instruction card and how it looks aestetically 
     st.markdown(f"""
     <div class="mini-step">
         <div class="mini-number">{number}</div>
         <br>
-        <img src="data:image/png;base64,{image_base64}" width="42" style="margin:0 auto 5px auto;">
+        <img src="data:image/png;base64,{image}" width="42" style="margin:0 auto 5px auto;"> 
         <h4>{title}</h4>
         <p>{desc}</p>
     </div>
@@ -207,7 +256,7 @@ def render_mini_step(number, image_path, title, desc):
 row1 = st.columns(3)
 for i, step in enumerate(steps[:3]):
     with row1[i]:
-        render_mini_step(i + 1, *step)
+        render_instruction_card(i + 1, *step)
 
 
 st.markdown("<div style='height:12px;'></div>", unsafe_allow_html=True)
@@ -216,76 +265,79 @@ st.markdown("<div style='height:12px;'></div>", unsafe_allow_html=True)
 row2 = st.columns(3)
 for i, step in enumerate(steps[3:]):
     with row2[i]:
-        render_mini_step(i + 4, *step)
+        render_instruction_card(i + 4, *step)
 
 
 st.divider()
 
 
+# Written information for step 2 
 st.markdown("""
 <div class="section-label">Step 2</div>
 <div class="section-title">Upload Item Sale Report</div>
 """, unsafe_allow_html=True)
 
 
-uploaded_file = st.file_uploader(
+uploaded_file = st.file_uploader( # Creates the file uploader button 
     "Upload 4-week Lightspeed CSV",
     type=["csv"],
     label_visibility="collapsed"
 )
 
 
-st.caption("Use the CSV exported directly from Lightspeed. Do not edit the column names before uploading.")
-
-
+# Warning label for uploading the CSV 
+st.caption("Please use only the CSV exported directly from Lightspeed. Do not edit or open file.")
 st.divider()
 
 
 if uploaded_file:
+    # Read in file & make sure it is right file 
     df = pd.read_csv(uploaded_file)
-
     required_columns = ["Stock", "Sold"]
     missing_columns = [col for col in required_columns if col not in df.columns]
-
     if missing_columns:
-        st.error(
-            f"Your CSV is missing these required columns: {', '.join(missing_columns)}"
+        st.error( f"It appears that you may have uploaded the wrong file! Your file must contain these columns: {', '.join(missing_columns)}"
         )
 
     else:
         df["Order Qty"] = np.where(
-            (df["Stock"] <= 0) & (df["Sold"] == 1),
-            2,
+            (df["Stock"] <= 0) & (df["Sold"] == 1), # If QOH = 0 and total_quantity = 1,2 ... 
+            2, # Than Order QTY = 2 
             np.where(
+                # if(quantity_on_hand <= 0, total_quantity * (3/4), ...)
                 df["Stock"] <= 0,
                 df["Sold"] * (3 / 4),
                 np.where(
+                    # if(quantity_on_hand < 2, total_quantity / 2, ...)
                     df["Stock"] < 2,
                     df["Sold"] / 2,
-                    np.where(
+                    np.where
+                        # if((total_quantity / 2) - quantity_on_hand < 0, 0, ...)
                         (df["Sold"] / 2) - df["Stock"] < 0,
                         0,
+                        # else Order Qty = (Sold / 2) - Stock
                         (df["Sold"] / 2) - df["Stock"]
                     )
                 )
             )
         )
 
-        df["Order Qty"] = np.maximum(
-            0,
-            np.ceil(df["Order Qty"])
-        ).astype(int)
 
-        output_df = df[df["Order Qty"] > 0].copy()
-        output_df = output_df.sort_values("Order Qty", ascending=False)
+        df["Order Qty"] = np.ceil(df["Order Qty"]) # Round up 
+        df["Order Qty"] = np.maximum(0, df["Order Qty"]) # Ensures no negatives
+        df["Order Qty"] = df["Order Qty"].astype(int) # Convert to nearest integer
+        output_df = df[df["Order Qty"] > 0].copy() # Only keep rows > 0 OQ 
+        output_df = output_df.sort_values("Order Qty", ascending=False) # Sort largest to smallest
 
+        # Written informnation for step 3 
         st.markdown("""
         <div class="section-label">Step 3</div>
         <div class="section-title">Order Results</div>
         <div class="section-subtitle">Review the recommended order quantities below, and download your CSV.</div>
         """, unsafe_allow_html=True)
-
-        st.markdown("""
+        
+        # Creates the preview box for seeing the potential output 
+        st.markdown(""" 
         <h3 style="
             color:#1D5A3E;
             font-size:24px;
@@ -296,21 +348,21 @@ if uploaded_file:
         </h3>
         """, unsafe_allow_html=True)
 
-        st.dataframe(output_df.head(50), use_container_width=True)
+        st.dataframe(output_df.head(50), use_container_width=True) # Just shows the top 50 rows at our width 
 
-        full_csv = output_df.to_csv(index=False)
+        full_csv = output_df.to_csv(index=False) # Creates a full csv of the output 
 
-        upc_order_df = output_df[["UPC", "Order Qty"]].copy()
-        upc_order_csv = upc_order_df.to_csv(index=False)
+        upc_order_df = output_df[["UPC", "Order Qty"]].copy() # Creates a dataframe of just the UPC and Order QTY 
+        upc_order_csv = upc_order_df.to_csv(index=False) # Puts that df into a csv
 
         @st.dialog("Heads up!")
-        def order_template_warning():
+        def order_template_warning(): # Puts a warning label for opening the file as to not change the UPC's or the QTY 
             st.write(
-                "ⓘ **Heads up!** Please do **not** open this file. "
+                "ⓘ **Heads up!** Please **do** **not** open this file. "
                 "Instead, import it directly into a Lightspeed Purchase Order."
             )
 
-            st.download_button(
+            st.download_button( # Creates the buttons for downloading the CSV 
                 label="Download Order Template",
                 data=upc_order_csv,
                 file_name="upc_order_template.csv",
@@ -321,16 +373,16 @@ if uploaded_file:
         left, spacer, right = st.columns([2, 8, 2])
 
         with left:
-            st.download_button(
-            label="Download Full CSV",
+            st.download_button( # Creates the button for dowloading the entire the WHOLE unedited CSV 
+            label="Download Unedited CSV",
             data=full_csv,
             file_name="major_vendor_order_output.csv",
             mime="text/csv",
             use_container_width=True
         )
-
+ 
         with right:
-            if st.button("Download Order Template", use_container_width=True):
+            if st.button("Download Order Template", use_container_width=True): # Sets the button's locations
                 order_template_warning()
 
 else:
