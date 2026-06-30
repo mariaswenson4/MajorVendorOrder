@@ -310,23 +310,20 @@ for i, step in enumerate(steps[3:]):
 st.divider()
 
 ### Box for the date 56 days ago 
-
 report_start = datetime.today() - timedelta(days=56)
-calendar = image_to_base64("images/calendar.png")
 
-st.markdown(f"""
-<div class="date-box">
-    <img src="data:image/png;base64,{calendar}" width="40">
+with st.container(border=True):
+    col1, col2 = st.columns([1, 12])
 
-    <div>
-        <div class="date-title">Report Date Range</div>
-        <div class="date-text">
-            Report should begin on <strong>{report_start.strftime("%B %d, %Y")}</strong>
-            (56 days ago).
-        </div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+    with col1:
+        st.image("images/calendar.png", width=40)
+
+    with col2:
+        st.markdown("### Report Date Range")
+        st.markdown(
+            f"Report should begin on **{report_start.strftime('%B %d, %Y')}** (56 days ago)."
+        )
+
 
 st.divider()
 
