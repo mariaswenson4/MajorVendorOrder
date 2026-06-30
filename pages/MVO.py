@@ -310,6 +310,7 @@ for i, step in enumerate(steps[3:]):
 
 ### Box for the date 56 days ago 
 report_start = datetime.today() - timedelta(days=56)
+calendar = image_to_base64("images/calendar.png")
 st.markdown(f"""
 <div class="date-box">
     <img class="date-image"
