@@ -8,46 +8,28 @@ st.divider()
 
 # st.subheader("Ordering")
 
+## Inventory Schedule Button
 st.link_button(
      ":material/inventory_2: Inventory Schedule",
      "https://docs.google.com/spreadsheets/d/1xA57rmNrJncakYEKfHGBNdOwWs4yPEyrK3YzqTE4So8/edit?usp=sharing",
      use_container_width=True,
  )
+st.divider()
 
-# st.link_button(
-#     "📦 Instacart Portal",
-#     "https://your-instacart-url.com",
-#     use_container_width=True,
-# )
 
-# st.divider()
+## MAP Complaint Brands Button Button
+st.link_button(
+     ":material/inventory_2: MAP Compliant Brands",
+     "https://docs.google.com/spreadsheets/d/1jEMzkdoDlyFqdYH0YjBy4yMfza1-8XrJOnkCzhg88xM/edit?usp=sharing",
+     use_container_width=True,
+ )
+st.divider()
 
-# st.subheader("Communication")
+## Vendor Contact 
+st.link_button(
+     ":material/inventory_2: Vendor Contact Sheet",
+     "https://docs.google.com/spreadsheets/d/18dn2ojjVdkF8QU1qTURwm3GmqOR2-eYvIn2IjGpUg4k/edit?usp=sharing",
+     use_container_width=True,
+ )
+st.divider()
 
-# st.link_button(
-#     "💬 Slack",
-#     "https://slack.com",
-#     use_container_width=True,
-# )
-
-# st.link_button(
-#     "📅 Google Calendar",
-#     "https://calendar.google.com",
-#     use_container_width=True,
-# )
-
-# st.divider()
-
-# st.subheader("Company")
-
-# st.link_button(
-#     "📊 Inventory Spreadsheet",
-#     "https://docs.google.com/...",
-#     use_container_width=True,
-# )
-
-# st.link_button(
-#     "📁 Google Drive",
-#     "https://drive.google.com",
-#     use_container_width=True,
-# )
