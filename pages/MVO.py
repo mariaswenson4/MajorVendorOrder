@@ -320,18 +320,17 @@ calendar_icon = image_to_base64("images/calendar.png")
 
 st.markdown(f"""
 <div class="date-card">
-    <div class="date-card-inner">
-        <img src="data:image/png;base64,{calendar_icon}" class="date-icon">
-
-        <div>
-            <div class="date-title">Report Date Range</div>
-            <div class="date-text">
-                <strong>Bi-Weekly Orders:</strong> {bi_report_start.strftime("%B %d, %Y")}
-                <br>
-                <strong>Weekly Orders:</strong> {weekly_report_start.strftime("%B %d, %Y")}
-            </div>
-        </div>
-    </div>
+<div class="date-card-inner">
+<img src="data:image/png;base64,{calendar_icon}" class="date-icon">
+<div>
+<div class="date-title">Report Date Range</div>
+<div class="date-text">
+<strong>Bi-Weekly Orders:</strong> {bi_report_start.strftime("%B %d, %Y")}
+<br>
+<strong>Weekly Orders:</strong> {weekly_report_start.strftime("%B %d, %Y")}
+</div>
+</div>
+</div>
 </div>
 """, unsafe_allow_html=True)
 
