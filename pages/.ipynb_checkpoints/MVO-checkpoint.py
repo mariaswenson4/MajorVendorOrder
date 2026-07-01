@@ -256,7 +256,7 @@ steps = [ # Reads in the images for the step cards as well as set the titles for
     ("images/reports.png", "Reports", "Open REPORTS from the sidebar."),
     ("images/grouped_sales.png", "Grouped Sales", "Scroll to GROUPED SALES TOTAL."),
     ("images/item_report.png", "Item Report", "Select ITEM as the report type."),
-    ("images/calendar.png", "Date Filter", "Set DATE RANGE based on report frequency (listed below)"),
+    ("images/calendar.png", "Date Filter", "Set DATE RANGE based on schedule below."),
     ("images/vendor.png", "Vendor Filter", "Choose the desired VENDOR."),
     ("images/export.png", "Export CSV", "Press EXPORT and save the CSV.")
 ]
