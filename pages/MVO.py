@@ -256,7 +256,7 @@ steps = [ # Reads in the images for the step cards as well as set the titles for
     ("images/reports.png", "Reports", "Open REPORTS from the sidebar."),
     ("images/grouped_sales.png", "Grouped Sales", "Scroll to GROUPED SALES TOTAL."),
     ("images/item_report.png", "Item Report", "Select ITEM as the report type."),
-    ("images/calendar.png", "Date Filter", "Set DATE RANGE based on schedule below."),
+    ("images/calendar.png", "Date Filter", "Set DATE RANGE based on report frequency below."),
     ("images/vendor.png", "Vendor Filter", "Choose the desired VENDOR."),
     ("images/export.png", "Export CSV", "Press EXPORT and save the CSV.")
 ]
@@ -295,7 +295,8 @@ for i, step in enumerate(steps[3:]):
 
 
 ### Box for the date 56 days ago 
-report_start = datetime.today() - timedelta(days=56)
+bi_report_start = datetime.today() - timedelta(days=56)
+weekly_report_start = datetime.today() - timedelta(days=28)
 
 st.markdown('<div class="date-box">', unsafe_allow_html=True)
 
@@ -315,16 +316,16 @@ with col2:
     st.markdown(
         f"""
         <p class="date-text">
-            Set the report start date to
-            <strong>{report_start.strftime("%B %d, %Y")}</strong>.
+            If you are placing order every other week, set the report start date to 
+            <strong>{bi_report_start.strftime("%B %d, %Y")}</strong>.
+            If you are placing order weekly, set the report start date to 
+            <strong>{weekly_report_start.strftime("%B %d, %Y")}</strong>.
         </p>
         """,
         unsafe_allow_html=True
     )
 
 st.markdown("</div>", unsafe_allow_html=True)
-
-
 st.divider()
 
 
