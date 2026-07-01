@@ -193,26 +193,44 @@ hr {
 
 /* DATE INFO BOX */
 
-.date-box {
-    background-color: #EFE3C4;
+/* DATE INFO CARD */
+.date-card {
+    background-color: #FDF7EA;
     border: 1px solid #D7C8A4;
     border-radius: 18px;
-    padding: 10px 18px;
-    margin-top: 16px;
-    margin-bottom: 24px;
+    padding: 18px 22px;
+    margin-top: 18px;
+    margin-bottom: 28px;
+    box-shadow: 0px 3px 10px rgba(47,55,45,0.04);
+}
+
+.date-card-inner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.date-icon {
+    width: 46px;
+    height: auto;
 }
 
 .date-title {
     color: #1D5A3E;
-    font-size: 22px;
-    font-weight: 700;
-    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 6px;
 }
 
 .date-text {
     color: #5C7A58;
     font-size: 15px;
+    line-height: 1.6;
     margin: 0;
+}
+
+.date-text strong {
+    color: #1D5A3E;
 }
 
 /* SETS HEADERS TO GREEN */
@@ -298,34 +316,27 @@ for i, step in enumerate(steps[3:]):
 bi_report_start = datetime.today() - timedelta(days=56)
 weekly_report_start = datetime.today() - timedelta(days=28)
 
-st.markdown('<div class="date-box">', unsafe_allow_html=True)
+calendar_icon = image_to_base64("images/calendar.png")
 
-col1, col2 = st.columns([1, 12], vertical_alignment="center")
+st.markdown(
+    f"""
+    <div class="date-card">
+        <div class="date-card-inner">
+            <img src="data:image/png;base64,{calendar_icon}" class="date-icon">
 
-with col1:
-    st.image("images/calendar.png", width=56)
-
-with col2:
-    st.markdown(
-        """
-        <p class="date-title">Report Date Range</p>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        f"""
-        <p class="date-text">
-            If you are placing order every other week, set the report start date to 
-            <strong>{bi_report_start.strftime("%B %d, %Y")}</strong>.
-            If you are placing order weekly, set the report start date to 
-            <strong>{weekly_report_start.strftime("%B %d, %Y")}</strong>.
-        </p>
-        """,
-        unsafe_allow_html=True
-    )
-
-st.markdown("</div>", unsafe_allow_html=True)
+            <div>
+                <div class="date-title">Report Date Range</div>
+                <div class="date-text">
+                    <strong>Bi-Weekly Orders:</strong> {bi_report_start.strftime("%B %d, %Y")}
+                    <br>
+                    <strong>Weekly Orders:</strong> {weekly_report_start.strftime("%B %d, %Y")}
+                </div>
+            </div>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 st.divider()
 
 
