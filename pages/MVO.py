@@ -198,16 +198,18 @@ hr {
     background-color: #FDF7EA;
     border: 1px solid #D7C8A4;
     border-radius: 18px;
-    padding: 18px 22px;
-    margin-top: 18px;
-    margin-bottom: 28px;
+    padding: 10px 20px;
+    margin-top: 15px;
+    margin-bottom: 20px;
     box-shadow: 0px 3px 10px rgba(47,55,45,0.04);
 }
 
 .date-card-inner {
-    display: flex;
-    align-items: center;
-    gap: 18px;
+    align-items: flex-start;
+}
+
+.date-icon {
+    margin-top: 8px;
 }
 
 .date-icon {
@@ -217,14 +219,14 @@ hr {
 
 .date-title {
     color: #1D5A3E;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
     margin-bottom: 6px;
 }
 
 .date-text {
     color: #5C7A58;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.6;
     margin: 0;
 }
