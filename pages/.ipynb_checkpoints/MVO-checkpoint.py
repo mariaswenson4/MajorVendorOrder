@@ -205,11 +205,9 @@ hr {
 }
 
 .date-card-inner {
-    align-items: flex-start;
-}
-
-.date-icon {
-    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
 .date-icon {
