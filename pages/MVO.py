@@ -164,6 +164,7 @@ footer {
     background-color: #1D5A3E;
     color: white;
     border-radius: 12px;
+    padding: 0.55rem 1rem;
     border: none;
     font-weight: 700;
 }
@@ -434,10 +435,6 @@ if uploaded_file:
                 use_container_width=True
             )
 
-        st.markdown(
-            "ⓘ **Heads Up!** Before importing into Lightspeed, remove any discontinued items and any items with a blank Vendor ID."
-        )
-
         left, spacer, right = st.columns([2, 8, 2])
 
         with left:
@@ -452,6 +449,10 @@ if uploaded_file:
         with right:
             if st.button("Download Order Template", use_container_width=True): # Sets the button's locations
                 order_template_warning()
+
+        st.markdown(
+            "ⓘ **Heads Up!** Before importing into Lightspeed, remove any discontinued items and any items with a blank Vendor ID."
+        )
 
 else:
     pass
