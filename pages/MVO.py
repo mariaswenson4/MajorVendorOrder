@@ -434,6 +434,10 @@ if uploaded_file:
                 use_container_width=True
             )
 
+        st.markdown(
+            "ⓘ **Heads Up!** Before importing into Lightspeed, remove any discontinued items and any items with a blank Vendor ID."
+        )
+
         left, spacer, right = st.columns([2, 8, 2])
 
         with left:
